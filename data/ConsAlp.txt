@@ -1,0 +1,6 @@
+!The Alphabet for consensus, mode = 5
+N = {A,C,G,T}
+S = {A,C}
+L = {G, T}
+P = {A,G,T}
+
