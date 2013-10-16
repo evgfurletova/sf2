@@ -38,8 +38,8 @@ def read_alp_DHHM(f):
     order = int(f_data[0])
     alpmas = f_data[1].replace(' ', '')
     nstates = int(f_data[2])
-    dhhmprob = map(lambda i: map(lambda x: float(x), f_data[i].split()),range(3,3+nstates))    
-    ind = 3 + nstates
+    dhhmprob = map(lambda i: map(lambda x: float(x), f_data[i].split()),range(4,4+nstates))    
+    ind = 5 + nstates
     dhhmtrans = map(lambda i: map(lambda x: int(x), f_data[i].split()),range(ind,ind + nstates))
     return order,alpmas,nstates,dhhmprob,dhhmtrans
 ###########################################
@@ -82,6 +82,7 @@ def func_test(noccur,tlen,mode,patparam,order,alpfile):
         print "Trans"
         for i in range(nstates):
             print dhhmtrans[i]
+	
         sf.analis_alp_dhhm_data(alpmas, nstates, dhhmprob, dhhmtrans)
     elif order == -2:
         order,alpmas,nstates,hhmprob = read_alp_HHM(f)
@@ -93,6 +94,7 @@ def func_test(noccur,tlen,mode,patparam,order,alpfile):
             for j in range(nstates):
                 print hhmprob[i][j]
         sf.analis_alp_hhm_data(alpmas,nstates,hhmprob)
+	  
 
     f.close()
     param = patparam.split()
@@ -128,12 +130,11 @@ def func_test(noccur,tlen,mode,patparam,order,alpfile):
     err, prob, report, reswords = sf.main()
     print "Prob ",prob
     print report
-    input()
     return prob
     
 
-pr = func_test(3,1000,0,'words3.txt',0,'Alpb.txt')
-#pr = func_test(3,1000,0,'words3.txt',1,'Alpm.txt')
+#pr = func_test(3,1000,0,'words3.txt',0,'Alpb.txt')
+pr = func_test(3,1000,0,'words4.txt',-1,'Alpd.txt')
 #pr = func_test(1,100,2,'pssm8.txt -1',0,'Alpb.txt')
 
 #pr = func_test(1,100,0,'Patterns/Words4_1.txt',0,'Alphabets/Bern/Alpb_4_0.txt')

@@ -137,6 +137,7 @@ extern "C" int func_analis_alp_mark_data(int AlpSize, char* AlpMas, double* IniP
 
 	int power = MModel_Prob::NumPower(AlpSize,MainData::order);
 	H_M_Node::NumAllStates = power;
+	MModel_Prob::Power = power;
 
 	if(IniProbs != NULL){
 		MainData::MarkovType = 1;
@@ -854,7 +855,7 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 		}
 		delete[] MainData::MarkovProbs;
 	}
-	if(ExitFlag == 1){
+	
 		int j;
        if((MainData::order == -2)&&(MainData::CrDistribFlag == 1)){
 			for(i = 0; i < H_M_Node::NumAllStates; i++){
@@ -876,14 +877,15 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 			delete[] MainData::D_HHMProbs;
 			delete[] MainData::D_HHMTrans;
 		}
-		cout<<Error_line;
-		MainData::ErrorDetect(MainData::Error);
-		int err = MainData::Error;
+		if(ExitFlag == 1){
+			cout<<Error_line;
+			MainData::ErrorDetect(MainData::Error);
+			int err = MainData::Error;
 
-		//create_report(report);		
-		return err;
-	}
-
+			//create_report(report);		
+			return err;
+	     }
+  
 	
 
 
