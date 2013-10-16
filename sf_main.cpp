@@ -827,7 +827,8 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 	if(ExitFlag == 0){
 		NodeAC::CreateTrie(); //Create suffix links of nodes of AhoCoracis trie (see nodeac.h, ac_trie.cpp)
 		if(MainData::NWords < 10000){
-			NodeAC::PrintWords(&outW, NodeAC::ACRoot, "");
+			std::string word;
+			NodeAC::PrintWords(&outW, NodeAC::ACRoot, word);
 		}
 		
 		if(MainData::order > 0){ //if Markov model of order K is given

@@ -297,17 +297,19 @@ void  DebTriePrint2(NodeAC* node, string word){
 //node - current considered node during traversal, word - word corresponding to the node
 
 void  NodeAC::PrintWords(ostream*ff, NodeAC* node, string word){
-	string word1 = word + MainData::AlpMas[node->sign];
+	if(node != NodeAC::ACRoot){
+	     word.push_back(MainData::AlpMas[node->sign]);
+	}
 	if(node->leaf != 0){
 		LeafAC* leaf = static_cast<LeafAC*>(node);
-		*(ff)<<leaf->leafnum<<".  "<<word1<<'\n';
+		*(ff)<<leaf->leafnum<<".  "<<word<<'\n';
 	}
 	if(node->leaf ==0){
 		InternAC* node1 = static_cast<InternAC*>(node);
 		std::list<NodeAC*>::iterator i;
 		for(i = node1->LChilds.begin(); i != node1->LChilds.end(); i++){
 			NodeAC* node2 = *i;
-			PrintWords(ff,node2,word1);
+			PrintWords(ff,node2,word);
 		}
 	}
 }

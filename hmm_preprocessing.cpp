@@ -476,6 +476,7 @@ void Del_HMM_Mas(void){
 		free(OrderProbs);
 	}
 	
+	/*
 	if(MainData::order == -2){
 		for(i = 0; i < H_M_Node::NumAllStates; i++){
 			for(j = 0; j < H_M_Node::NumAllStates; j++){
@@ -496,6 +497,7 @@ void Del_HMM_Mas(void){
 		delete[] MainData::D_HHMProbs;
 		delete[] MainData::D_HHMTrans;
 	}
+	*/
 	return;
 }
 
