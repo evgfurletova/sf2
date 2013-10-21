@@ -68,9 +68,15 @@ install(
 	LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}${PYTHON_SITEARCH}"
 )
 
+if(EXISTS /etc/SuSE-release)
+    set(DOCDIR /share/doc/packages/sf2)
+else()
+    set(DOCDIR /share/doc/sf2-2.0.0)
+endif()
+
 install(
 	FILES py_module.html
-	DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/sf2/"
+	DESTINATION "${CMAKE_INSTALL_PREFIX}${DOCDIR}"
 )
 
 endif()
