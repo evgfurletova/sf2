@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.6)
 
 
-find_package(PythonLibs 2.7)
+find_package(PythonLibs 2.6)
+find_package(PythonInterp 2.6)
 include_directories(${PYTHON_INCLUDE_DIRS})
+include_directories(${PYTHON_INCLUDE_PATH})
+
+add_definitions(-Dnullptr=0)
 
 set(CMAKE_CXX_FLAGS "-std=c++0x")
 set(HEADERS
@@ -43,7 +47,26 @@ set(PY_SOURCES
     sfmodule.c
 )
 
-add_executable(sufpref2 ${SOURCES})
+add_executable(sufpref ${SOURCES})
 PYTHON_ADD_MODULE(sf ${SOURCES} ${PY_SOURCES})
-#add_library(sf MODULE ${SOURCES} ${PY_SOURCES})
-#target_link_libraries(sf ${PYTHON_LIBRARIES})
+set_target_properties(sf PROPERTIES PREFIX "")
+
+if((${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64") AND NOT (EXISTS /etc/ubuntu-release) AND NOT (EXISTS /etc/debian_version))
+    set(LIB_BASENAME lib64)
+else()
+    set(LIB_BASENAME lib)
+endif()
+
+exec_program(
+	${PYTHON_EXECUTABLE}
+	ARGS -c \"import sys\; print '%d.%d' % (sys.version_info[0], sys.version_info[1])\"
+	OUTPUT_VARIABLE PYTHON_VERSION
+)
+
+install(
+	TARGETS sufpref sf
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION "${LIB_BASENAME}/python${PYTHON_VERSION}/site-packages"
+)
+
+
