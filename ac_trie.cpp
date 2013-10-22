@@ -49,6 +49,10 @@ int NodeAC::InsertWord(int* word, int num){
 			}
 			j++;
 		}
+		if((flag == 1)&&( i == MainData::WordLen -1)){
+			cerr<<"WARNING: Pattern contains duplicate words\n";
+			MainData::NWords --;
+		}
 		if(flag == 0){
 		    NodeAC* node1 = node;
 			if(i< MainData::WordLen - 1){

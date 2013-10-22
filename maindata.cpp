@@ -564,7 +564,7 @@ ifstream ff(MainData::PatternFileName.c_str());
 			return 13;
 		}
 	}
-	MainData::NWords = i;
+	MainData::NWords += i;
 
 	ff.close();
 	delete[] line;
@@ -1277,7 +1277,7 @@ int MainData::GetInput(void){
 		return 24;
 	}
 
-	if((MainData::mode == 2)||(MainData::mode == 3)){
+	/*if((MainData::mode == 2)||(MainData::mode == 3)){
 		for(i = 0; i < MainData::WordLen; i++){
 			delete[] MainData::PssmMas[i];
 		}
@@ -1286,7 +1286,7 @@ int MainData::GetInput(void){
 	}
 	if((MainData::mode == 4)&(MainData::ConstPositions != NULL)){
 		delete[] MainData::ConstPositions;
-	}
+	}*/
 
 	return 0;
 }
