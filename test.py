@@ -134,12 +134,12 @@ def func_test(noccur,tlen,mode,patparam,order,alpfile):
     
 
 #pr = func_test(3,1000,0,'words3.txt',0,'Alpb.txt')
-pr = func_test(3,1000,0,'words4.txt',-1,'Alpd.txt')
+pr = func_test(1,100,0,'words4.txt',1,'Alpm.txt')
 #pr = func_test(1,100,2,'pssm8.txt -1',0,'Alpb.txt')
 
 #pr = func_test(1,100,0,'Patterns/Words4_1.txt',0,'Alphabets/Bern/Alpb_4_0.txt')
 #pr = func_test(1,100,1,'10 10',0,'Alpb.txt')
-#pr = func_test(1,100,2,'PSSM/pssm3.txt 5',0,'Alphabets/Bern/Alpb_4_0.txt')
+#pr = func_test(1,100,3,'PSSM/pssm3.txt 5',0,'Alphabets/Bern/Alpb_4_0.txt')
 #pr = func_test(1,100,4,'ACTGAT 1',0,'Alpb.txt')
 #pr = func_test(1,100,5,'NASSLT',0,'Alpb.txt')
 

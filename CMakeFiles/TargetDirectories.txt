@@ -1,0 +1,4 @@
+C:/SufPref2/CMakeFiles/ALL_BUILD.dir
+C:/SufPref2/CMakeFiles/ZERO_CHECK.dir
+C:/SufPref2/CMakeFiles/sf.dir
+C:/SufPref2/CMakeFiles/sufpref2.dir
