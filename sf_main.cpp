@@ -356,7 +356,7 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 	int* DigitLine = new int[MainData::WordLen + 1];
 	DigitLine[MainData::WordLen] = -1;
 	
-	MainData::NWords = NWords;
+	MainData::NWords = 0;
 
 	for(i = 0; i < NWords; i++){
 		if(strlen(WordsList[i]) == MainData::WordLen){					
@@ -385,7 +385,7 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 	}
 	delete[] DigitLine;
 
-	
+	MainData::NWords += NWords;
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
 	return 0;
