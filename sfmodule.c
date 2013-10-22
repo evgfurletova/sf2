@@ -461,17 +461,17 @@ EXTERN PyObject* py_func_main(PyObject *self, PyObject *args, PyObject *keywds)
 }
 
 static PyMethodDef sf_methods[] = {
-    {"set_input_data",         (PyCFunction)py_func_set_input_data,        METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_alp_bern_data",   (PyCFunction)py_func_analis_alp_bern_data,  METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_alp_mark_data",   (PyCFunction)py_func_analis_alp_mark_data,  METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_alp_dhhm_data",   (PyCFunction)py_func_analis_alp_dhhm_data,  METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_alp_hhm_data",    (PyCFunction)py_func_analis_alp_hhm_data,   METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_pattern_data_0",  (PyCFunction)py_func_analis_pattern_data_0, METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_pattern_data_1",  (PyCFunction)py_func_analis_pattern_data_1, METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_pattern_data_2_3",(PyCFunction)py_func_analis_pattern_data_2_3,METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_pattern_data_4",  (PyCFunction)py_func_analis_pattern_data_4, METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"analis_pattern_data_5",  (PyCFunction)py_func_analis_pattern_data_5, METH_VARARGS|METH_KEYWORDS, "!!! Comment !!!"},
-    {"main",  (PyCFunction)py_func_main, 0, "!!! Comment !!!"},
+    {"set_input_data",         (PyCFunction)py_func_set_input_data,        METH_VARARGS|METH_KEYWORDS, "Analyzes part of input parameters"},
+    {"analis_alp_bern_data",   (PyCFunction)py_func_analis_alp_bern_data,  METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to alphabet and Bernoulli probability model"},
+    {"analis_alp_mark_data",   (PyCFunction)py_func_analis_alp_mark_data,  METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to alphabet and  Markov probability model"},
+    {"analis_alp_dhhm_data",   (PyCFunction)py_func_analis_alp_dhhm_data,  METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to the alphabet and deterministic HMM"},
+    {"analis_alp_hhm_data",    (PyCFunction)py_func_analis_alp_hhm_data,   METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to  the alphabet and  HMM"},
+    {"analis_pattern_data_0",  (PyCFunction)py_func_analis_pattern_data_0, METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to the pattern described by list of words"},
+    {"analis_pattern_data_1",  (PyCFunction)py_func_analis_pattern_data_1, METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to random pattern"},
+    {"analis_pattern_data_2_3",(PyCFunction)py_func_analis_pattern_data_2_3,METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to pattern described by PSSM and cut-off"},
+    {"analis_pattern_data_4",  (PyCFunction)py_func_analis_pattern_data_4, METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to  pattern described by a word and a number of mismatches"},
+    {"analis_pattern_data_5",  (PyCFunction)py_func_analis_pattern_data_5, METH_VARARGS|METH_KEYWORDS, "Analyzes input parameters corresponding to  pattern described by consensus"},
+    {"main",  (PyCFunction)py_func_main, 0, "Calculates P-value"},
     {NULL, NULL, 0, NULL}
 };
 

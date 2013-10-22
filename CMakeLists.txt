@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.6)
 
 
-find_package(PythonLibs 2.7)
+find_package(PythonLibs 2.6)
+find_package(PythonInterp 2.6)
 include_directories(${PYTHON_INCLUDE_DIRS})
+include_directories(${PYTHON_INCLUDE_PATH})
+
+add_definitions(-Dnullptr=0)
 
 set(CMAKE_CXX_FLAGS "-std=c++0x")
 set(HEADERS
@@ -39,11 +43,41 @@ sufpref2.cpp
 sf_main.cpp
 )
 
+
+add_executable(sufpref ${SOURCES})
+
+if(NOT WIN32)
+
 set(PY_SOURCES
     sfmodule.c
 )
 
-add_executable(sufpref2 ${SOURCES})
+
 PYTHON_ADD_MODULE(sf ${SOURCES} ${PY_SOURCES})
-#add_library(sf MODULE ${SOURCES} ${PY_SOURCES})
-#target_link_libraries(sf ${PYTHON_LIBRARIES})
+set_target_properties(sf PROPERTIES PREFIX "")
+
+exec_program(
+	${PYTHON_EXECUTABLE}
+	ARGS -c \"from distutils.sysconfig import get_python_lib\; print\(get_python_lib\(1\)[4:]\)\"
+	OUTPUT_VARIABLE PYTHON_SITEARCH
+)
+
+install(
+	TARGETS sufpref sf
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}${PYTHON_SITEARCH}"
+)
+
+if(EXISTS /etc/SuSE-release)
+    set(DOCDIR /share/doc/packages/sf2)
+else()
+    set(DOCDIR /share/doc/sf2-2.0.0)
+endif()
+
+install(
+	FILES py_module.html
+	DESTINATION "${CMAKE_INSTALL_PREFIX}${DOCDIR}"
+)
+
+endif()
+

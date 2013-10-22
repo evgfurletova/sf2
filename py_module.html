@@ -1,0 +1,353 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.0.0  (Win32)">
+	<META NAME="CREATED" CONTENT="20101217;14190000">
+	<META NAME="CHANGED" CONTENT="20131021;15380199">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21.59cm 27.94cm; margin-right: 1.98cm; margin-top: 2cm; margin-bottom: 2cm }
+		P { color: #000000 }
+		P.western { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ru-RU }
+		P.cjk { font-family: "SimSun", "??"; font-size: 10pt; so-language: zh-CN }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ru-RU }
+		H1 { color: #000000; orphans: 0; page-break-after: avoid }
+		H1.western { font-family: "Arial", sans-serif; font-size: 18pt; so-language: ru-RU; font-weight: bold }
+		H1.cjk { font-family: "SimSun", "??"; font-size: 18pt; so-language: zh-CN; font-weight: bold }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 18pt; so-language: ru-RU; font-weight: normal }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" TEXT="#000000" LINK="#000080" VLINK="#800000" DIR="LTR">
+<H1 LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="widows: 1"><SPAN LANG="en-US">Description
+of</SPAN> Python-<SPAN LANG="en-US">functions</SPAN> <SPAN LANG="en-US">of</SPAN>
+sf <SPAN LANG="en-US">module</SPAN></H1>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Tahoma, sans-serif">//</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">1.
+the function analyzes part of input parameters</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+set_input_data(order, mode, TLen, NOccur):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>order</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+&ndash;</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+integer   </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">	
+                </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//
+order of probability model </SPAN></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>mode</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-
+integer</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+     		 </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+// type of pattern description, see SufPref-ReadMe.txt</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>TLen
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer
+  </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+  		 </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+// length of random text</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>NOccur</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-
+integer </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+ 		 </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+// number of occurrences </SPAN></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+      		  </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//
+0 &ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></P>
+<P LANG="en-US" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif">//2.
+the function analyzes input parameters corresponding to alphabet and
+Bernoulli probability model</FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_alp_bern_data(AlpMas, BernProb):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>AlpMas
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+ </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+ 		    </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//alphabet</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>BernProb
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">list
+of real numbers </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//Bernoulli
+probabilities</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer   </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">		
+  </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif">//3.
+the function analyzes input parameters corresponding to alphabet and 
+Markov probability model</FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_alp_mark_data(AlpMas, MarkovProbs,IniProbs):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>AlpMas
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+  		 </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//alphabet</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>MarkovProbs
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>2-</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//Markov
+ probabilities</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>IniProbs</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">1</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="ru-RU">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers        </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//Initial
+probabilities</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer        		 </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></FONT></P>
+<P LANG="en-US" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif">//4.
+the function analyzes input parameters corresponding to the alphabet
+and deterministic HMM</FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_alp_dhhm_data(AlpMas, NumAllStates, D_HHMProbs, H_HHMTrans):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>AlpMas
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+  		 </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+//alphabet</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>NumAllStates</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+- </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+       </FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=3>   </FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>
+//</FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+number of states of  the HMM model</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>D_HHMProbs
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-
+</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>2-</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//transition
+probabilities</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>D_HHMTrans</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+-  2-</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//transitions</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer        		</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+//0 &ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western" STYLE="font-weight: normal"><FONT FACE="Tahoma, sans-serif">//5.
+the function analyzes input parameters corresponding to  the alphabet
+and  HMM</FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_alp_hhm_data(AlpMas, NumAllStates, ND_HHMProbs):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>AlpMas</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+  	            </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//alphabet</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>NumAllStates
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>-
+ </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+       </FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//</FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+number of states of  the HMM model</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>ND_HHMProbs
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-
+3</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>-</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+//transition probabilities</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">	Return
+integer        		</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//6.
+the function analyzes input parameters corresponding to the pattern
+described by list of words</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>def
+analis_pattern_data_0(WordsList):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>WordsList</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>
+&ndash;</FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+list of strings 	</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//list
+of pattern words </SPAN></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer        		</SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=2><SPAN LANG="en-US">/</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">/0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//7.
+the function analyzes input parameters corresponding to random
+pattern</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_pattern_data_1(NWords, WordLen, RandPatProbs):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>NWords</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+- </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+ </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"> 
+                  </FONT><FONT FACE="Tahoma, sans-serif">  //</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">number
+of words in the pattern</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>WordLen</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer
+</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+  </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">
+             </FONT><FONT FACE="Tahoma, sans-serif">   //</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">length
+of words in the pattern</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>RandPatProbs</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">
+</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">-</SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">
+</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">list
+of real numbers</SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+//Bernoulli probabilities of letters of pattern words </SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+</SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"> </FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer    </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+   		  </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//8.
+the function analyzes input parameters corresponding to pattern
+described by PSSM and cut-off</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>def
+analis_pattern_data_2_3(WordLen, FootPrints, PssmMas, </B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>Cut-off</B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>WordLen</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer
+</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+            	</FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>
+ //</FONT></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">number
+of words in the pattern</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>FootPrints</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">list
+of strings </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+  </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">
+    </FONT><FONT FACE="Tahoma, sans-serif">// </FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">list
+with footprints, see SufPref-ReadMe.txt</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>PssmMas</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+-  2-</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">dimensional
+list with real numbers</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+//matrix PSSM</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>Cut-off</B></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">real
+number   </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+           </SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">
+//Cut-off </SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+</SPAN></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">	</SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer  </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+     		</SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//9.
+the function analyzes input parameters corresponding to  pattern
+described by a word and a number of mismatches</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>def
+analis_pattern_data_4(motif, Nreplace, ConstPositions):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>motif</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+ </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"> 
+                           </FONT><FONT FACE="Tahoma, sans-serif">//</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">sample
+word</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>Nreplace</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+- </FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">integer</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">  
+                  </FONT><FONT FACE="Tahoma, sans-serif"> //</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">number
+of possible replacements</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif">	</FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>ConstPositions
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">list
+of integers</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+</SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif">  
+  </FONT><FONT FACE="Tahoma, sans-serif">//</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">constant
+positions</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">	</SPAN></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer    </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><SPAN LANG="en-US">
+   		</SPAN></FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western"><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2>//10.
+the function analyzes input parameters corresponding to  pattern
+described by consensus</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+analis_pattern_data_5(consensus, ConsAlp):</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>consensus
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>&mdash;
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">string
+               </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">
+//a word in a consensus alphabet ConsAlp</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>ConsAlp
+</B></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>&mdash;
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">list
+of strings       </SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//consensus
+alphabet</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+integer        		</SPAN></FONT></FONT><FONT FACE="Tahoma, sans-serif"><FONT SIZE=2><SPAN LANG="en-US">//0
+&ndash; if the input data is correct, code of error - otherwise</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Tahoma, sans-serif">//</FONT><FONT FACE="Tahoma, sans-serif"><SPAN LANG="en-US">11.
+the function calculates P-value</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>def
+main():</B></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>	</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Return
+four elements</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>:
+</FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>error
+</B></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">-
+integer, </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>P-value</B></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+- real number, </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>report</B></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+- string, </SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>list
+of  words from pattern</B></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+- string</SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3>
+</FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="en-US" CLASS="western" ALIGN=LEFT STYLE="widows: 1"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=4><B>Order
+of functions calling</B></FONT></FONT></P>
+<OL>
+	<LI><P LANG="en-US" CLASS="western" ALIGN=LEFT STYLE="widows: 1"><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><B>set_input_data</B></FONT></FONT></P>
+</OL>
+<P LANG="en-US" CLASS="western" ALIGN=LEFT STYLE="font-weight: normal; widows: 1">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>2.   function
+analyzing input parameters corresponding to the alphabet and
+probabilities distribution    (see functions 2-5)</FONT></FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=LEFT STYLE="font-weight: normal; widows: 1">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>3.  function
+analyzing input parameters corresponding to the pattern  (see
+functions 6-10)</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="widows: 1"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">5.
+  </SPAN></SPAN></FONT></FONT><FONT FACE="Droid Sans Mono, Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>main</B></SPAN></FONT></FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=LEFT STYLE="font-weight: normal; widows: 1">
+<BR>
+</P>
+</BODY>
+</HTML>

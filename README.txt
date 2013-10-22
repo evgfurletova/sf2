@@ -1,8 +1,8 @@
                 BUILD PREREQUIREMENTS
                 
-- A compiler supporting pre-C++11 standard (GCC version 4.7 or MSVC2010 or later);
-- CMake tool (www.cmake.org) version at least 2.8;
-- Python development package version at least 2.7.
+- A modern C++ standard (GCC version 4.4.7 or MSVC2010 or later);
+- CMake tool (www.cmake.org) version at least 2.6;
+- Python development package version at least 2.6.
 
 
                 BUILDING
@@ -13,5 +13,5 @@
 
                 ARTIFACTS
                 
-- A "SufPref2" binary executable;
-- a Python module named "sf".
+- A "sufpref" binary executable;
+- a Python module file named "sf.so".
