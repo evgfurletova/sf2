@@ -161,3 +161,11 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+*.vcxproj.*
+CMakeCache.txt
+MEMORY_REPORT.txt
+CMakeFiles
+*.sln
+Res.txt
+*.pro
+*.cmake
