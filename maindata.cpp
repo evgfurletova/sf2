@@ -1277,16 +1277,16 @@ int MainData::GetInput(void){
 		return 24;
 	}
 
-	if((MainData::mode == 2)||(MainData::mode == 3)){
-		for(i = 0; i < MainData::WordLen; i++){
-			delete[] MainData::PssmMas[i];
-		}
-		delete[] MainData::PssmMas;
-		MainData::PssmMas = NULL;
-	}
-	if((MainData::mode == 4)&(MainData::ConstPositions != NULL)){
-		delete[] MainData::ConstPositions;
-	}
+//	if((MainData::mode == 2)||(MainData::mode == 3)){
+//		for(i = 0; i < MainData::WordLen; i++){
+//			delete[] MainData::PssmMas[i];
+//		}
+//		delete[] MainData::PssmMas;
+//		MainData::PssmMas = NULL;
+//	}
+//	if((MainData::mode == 4)&(MainData::ConstPositions != NULL)){
+//		delete[] MainData::ConstPositions;
+//	}
 
 	return 0;
 }

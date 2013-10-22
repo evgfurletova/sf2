@@ -117,6 +117,16 @@ int main(int argc, char* argv[])
 	}
 
 
+    if((MainData::mode == 2)||(MainData::mode == 3)){
+        for(i = 0; i < MainData::WordLen; i++){
+            delete[] MainData::PssmMas[i];
+        }
+        delete[] MainData::PssmMas;
+        MainData::PssmMas = NULL;
+    }
+    if((MainData::mode == 4)&(MainData::ConstPositions != NULL)){
+        delete[] MainData::ConstPositions;
+    }
 	//Delete data structures
 
 	if(MainData::mode == 1){
@@ -132,30 +142,30 @@ int main(int argc, char* argv[])
 		out<<std::setprecision(15)<<MainData::Pvalue<<'\n';
 	}
 	
+    int j;
+    if((MainData::order == -2)&&(MainData::CrDistribFlag == 1)){
+        for(i = 0; i < H_M_Node::NumAllStates; i++){
+            for(j = 0; j < H_M_Node::NumAllStates; j++){
+                delete[] MainData::ND_HHMProbs[i][j];
+            }
+            delete[] MainData::ND_HHMProbs[i];
+            MainData::ND_HHMTrans[i]->clear();
+            delete[] MainData::ND_HHMTrans[i];
+        }
+        delete[] MainData::ND_HHMProbs;
+        delete[] MainData::ND_HHMTrans;
+    }
+    if((MainData::order == -1)&&(MainData::CrDistribFlag == 1)){
+        for(i = 0; i < H_M_Node::NumAllStates; i++){
+            delete[] MainData::D_HHMProbs[i];
+            delete[] MainData::D_HHMTrans[i];
+        }
+        delete[] MainData::D_HHMProbs;
+        delete[] MainData::D_HHMTrans;
+    }
 	if(ExitFlag > 0){
 		if((MainData::Out_mode > 1)&&(ExitFlag == 2)){
 			 MainData::PrintMain(&out,2);
-		}
-		int j;
-		if((MainData::order == -2)&&(MainData::CrDistribFlag == 1)){
-			for(i = 0; i < H_M_Node::NumAllStates; i++){
-				for(j = 0; j < H_M_Node::NumAllStates; j++){
-					delete[] MainData::ND_HHMProbs[i][j];
-				}
-				delete[] MainData::ND_HHMProbs[i];
-				MainData::ND_HHMTrans[i]->clear();
-				delete[] MainData::ND_HHMTrans[i];
-			}
-			delete[] MainData::ND_HHMProbs;
-			delete[] MainData::ND_HHMTrans;
-		}
-		if((MainData::order == -1)&&(MainData::CrDistribFlag == 1)){
-			for(i = 0; i < H_M_Node::NumAllStates; i++){	
-				delete[] MainData::D_HHMProbs[i];
-				delete[] MainData::D_HHMTrans[i];
-			}
-			delete[] MainData::D_HHMProbs;
-			delete[] MainData::D_HHMTrans;
 		}
 		return 1;
 	}
