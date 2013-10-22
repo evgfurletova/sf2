@@ -564,7 +564,7 @@ ifstream ff(MainData::PatternFileName.c_str());
 			return 13;
 		}
 	}
-	MainData::NWords = i;
+    MainData::NWords += i;
 
 	ff.close();
 	delete[] line;

@@ -49,6 +49,9 @@ int NodeAC::InsertWord(int* word, int num){
 			}
 			j++;
 		}
+        if (flag == 1 && i == MainData::WordLen-1) {
+            MainData::NWords -= 1;
+        }
 		if(flag == 0){
 		    NodeAC* node1 = node;
 			if(i< MainData::WordLen - 1){
