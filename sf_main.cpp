@@ -579,7 +579,7 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 		}
 	}
 	MainData::Nreplace = Nreplace;
-	MainData::NWords ++;
+	//MainData::NWords ++;
 	//AC_Trie::gTrie->InsertWord(MainData::motif, MainData::NWords);
 		
 	int s = NConstPositions;
