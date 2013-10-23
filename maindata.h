@@ -1,4 +1,4 @@
-#ifndef MAINDATA_H
+ï»¿#ifndef MAINDATA_H
 #define MAINDATA_H
 
 #include <string>
@@ -91,11 +91,11 @@ public:
 											// For Markov model the states are in alphabetical order;
 	static int MarkovType;					//1, if initial distribution is given; 0 - if Calculated 
 	// 4.2.3. for a non-deterministic HHM
-	static double*** ND_HHMProbs;			//Mairix (Q*Q*Alp->Ï(q,a,q')) of probabilities  Ï(q,a,q') being in a state q to generate a symbol a and traverse to a state q’.
-	static vector<int>** ND_HHMTrans;		//Matrix (Q*Alp->Q)of sets of states such that Ï(q,a,q')>0
+	static double*** ND_HHMProbs;			//Mairix (Q*Q*Alp->ÐŸ(q,a,q')) of probabilities  ÐŸ(q,a,q') being in a state q to generate a symbol a and traverse to a state qâ€™.
+	static vector<int>** ND_HHMTrans;		//Matrix (Q*Alp->Q)of sets of states such that ÐŸ(q,a,q')>0
 	// 4.2.4. for a deterministic HHM
 	static double** D_HHMProbs;				//Mairix (Q*Alp->P(q,a)) of probabilities  P(q,a) being in a state q to generate a symbol a
-	static int** D_HHMTrans;				//Mairix (Q*Alp->Ô(q,a)) state q=Ô(q,a) in which system passes from a state q generating a symbol a
+	static int** D_HHMTrans;				//Mairix (Q*Alp->Ð¤(q,a)) state q=Ð¤(q,a) in which system passes from a state q generating a symbol a
 	
 	//5.
 	static int Error;						//the code of error

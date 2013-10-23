@@ -1,4 +1,4 @@
-#ifndef NODEOV_H
+﻿#ifndef NODEOV_H
 #define NODEOV_H
 
 #include "maindata.h"
@@ -6,17 +6,17 @@
 using namespace std;
 
 /*
-				//Classes of descriptors of nodes of Overlap graph
-//The overlap graph OvGraph of a given pattern H is an oriented graph with the set of nodes
-//OV(HH) and a set of edges  that is a union of three subsets, left, right and deep edges, that are defined as follows:
-//  - A left edge links node w to node t iff w = lpred(t);
-//  - A right edge links node w to node t iff t = rpred(w).
-//  - A deep edge links node w to node t iff exists a non-empty class H*(w, t),
+                                Classes of descriptors of nodes of Overlap graph
+The overlap graph OvGraph of a given pattern H is an oriented graph with the set of nodes
+OV(HH) and a set of edges  that is a union of three subsets, left, right and deep edges, that are defined as follows:
+  - A left edge links node w to node t iff w = lpred(t);
+  - A right edge links node w to node t iff t = rpred(w).
+  - A deep edge links node w to node t iff exists a non-empty class H*(w, t),
 
-// where OV(HH) - set of overlap nodes; lpred(t) (rpred(t)) - maximal prefix (suffix) of t from OV(HH);
-//class H*(w,t) - subset of pattern words h, where lpred(h) = w and rpred(H) = t 
+ where OV(HH) - set of overlap nodes; lpred(t) (rpred(t)) - maximal prefix (suffix) of t from OV(HH);
+class H*(w,t) - subset of pattern words h, where lpred(h) = w and rpred(H) = t 
 
-//Node w is left (right) deep, iff exists a word h from HH, where lpred(h) = w (rpred(h) = w) 
+Node w is left (right) deep, iff exists a word h from HH, where lpred(h) = w (rpred(h) = w) 
 */
 
 //Descriptor of node w of OvGraf
@@ -39,7 +39,7 @@ public:
 	NodeOv* *DeepLinks; 	// List of deep links
 
 
-	///STATI� PARAMETERS (same for all nodes of the graph)
+	///STATIС PARAMETERS (same for all nodes of the graph)
 	static NodeOv* Root;			//root of the graph
     static int NumOVNodes;		    // number of nodes in the overlap graph
     static int NumRDNodes;			// number of right deep nodes in the overlap graph

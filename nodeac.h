@@ -51,7 +51,7 @@ class InternAC:
 	public:
 	int num;						  // number of the same node in the overlap graph
 	std::list<NodeAC*> LChilds;       // List of prefix links 
-	bool main;		   	              // if this vertex is overlap then main is 1, else 0;                      (1б)
+	bool main;		   	              // if this vertex is overlap then main is 1, else 0;                    
 
 	/////////METHODS//////////////////
 	InternAC();
@@ -66,7 +66,7 @@ class LeafAC:
 	public NodeAC
 {
 	public:
-	unsigned int leafnum;	     	  //number of the leaf													(4б)			
+	unsigned int leafnum;	     	  //number of the leaf			
 
 	/////////METHODS///////////////////
 	LeafAC();

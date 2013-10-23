@@ -1,4 +1,4 @@
-#include "d_hhm_prob.h"
+﻿#include "d_hhm_prob.h"
 #include "h_m_node.h"
 #include "maindata.h"
 
@@ -55,7 +55,7 @@ double D_HHM_Prob::TransitionProb(int q1, int q2){
 	return p;
 };
 
-//gets all states q' such that exisis a symbol a for that q'=�(q,a)
+//gets all states q' such that exisis a symbol a for that q'=Ф(q,a)
 vector<int> D_HHM_Prob::ConsistStates(int q){
 	vector<int> vec;
 	int i,j;

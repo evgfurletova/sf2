@@ -1,4 +1,5 @@
-#pragma once
+﻿#ifndef ND_HHM_PROB_H
+#define ND_HHM_PROB_H
 
 
 #include <vector>
@@ -13,9 +14,10 @@ public:
 	static double TermProb(std::string word, int q);			  //calculates Prob_q(word
 
 	static double TransitionProb(int q1, int q2);				  //calculates probability of transition from q1 to q2
-	static std::vector<int> ConsistStates(int q);					  //gets all states q' such that exisis a symbol a for that q'=�(q,a)
+	static std::vector<int> ConsistStates(int q);					  //gets all states q' such that exisis a symbol a for that q'=Ф(q,a)
 
 	ND_HHM_Prob(void);
 	~ND_HHM_Prob(void);
 
 };
+#endif

@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef H_M_DATA_H
 #define H_M_DATA_H
 
@@ -11,7 +11,7 @@
 		/*				NOTATIONS
 		Len p0 - be desired number of occurences; n0- text length; 
 		n - current stage of the algorithm; m - pattern length; Alp - alphabet; HH - pattern; Q - set of HMM states
-		ï(q',q) - probability from state q' to pass to state q
+		Ð¿(q',q) - probability from state q' to pass to state q
 		*/
 
 ////Descriptor of node w of OvGraf in case of  HMM or Markov model 
@@ -30,13 +30,13 @@ public:
 	static double* BnpProbs;				// The 2-dimensional matrix of size Q*p0
 									     	// BnpProbs[q][p]= Prob(B(n-m,p),q), q in Q, p = 0,..,p0-1  
 
-	static int** ConsistStMatrix;			//The array of lists. For all each state q  ConsistStMatrix[q] contains states q' (consistent with q) such that ï(q',q)>0 
+	static int** ConsistStMatrix;			//The array of lists. For all each state q  ConsistStMatrix[q] contains states q' (consistent with q) such that Ð¿(q',q)>0 
 	static int* ConsistStNums;				// The array of size NumAllStates
 											//ConsistStNums[q] = (number of states consistent with q)
 	
 	static double** TransProbMatrix;		//The array of lists.
 											//for all q from Q and for all states q' consistent with q 
-											//TransProbMatrix[q][q']=ï(q',q)
+											//TransProbMatrix[q][q']=Ð¿(q',q)
 
 	static double* TransStepProbMatrix;	    //(needed only for HHM)At the stage n of the algorithms work,
 											//TransProbMatrix[q][q'] is the probability of transition from q' to q during n steps, i.e Prob(q',V^n,q).
@@ -56,8 +56,6 @@ public:
 	static void ClearData(void);				//Clear data structures
 };
 
-#endif // H_M_DATA_H
-
 											//AUXILARY DATA
 
 extern double** HDProbs;						//Let w be processed node, n- current stage; depth - depth of the path leading to w
@@ -75,7 +73,7 @@ extern double** OrderProbs;						//For Markov model, let t be a prefix of motif 
 extern void SubStr(string &str, int startpos, int nsymb, string &result); //takes substring of string str; 
 																		  //Input parameters: str - string, start - starting position, nsymb - nummber of coping symbols, 
 																		  //result = str[start, start+nsymb]
-extern double TransitionProb(int q1, int q2);							  //computes ï(q1,q2)
+extern double TransitionProb(int q1, int q2);							  //computes Ð¿(q1,q2)
 
 extern double TermCondProb(int q1, std::string &word,  int wordsize, int q2);  // computes Prob(q1,word[1,wordsize],q2)
 																				//Input parameters: q1, q2 -starting and terminal states; word - word, wordsize - length of word
@@ -83,5 +81,9 @@ extern double TermCondProb(int q1, std::string &word,  int wordsize, int q2);  /
 extern double TermProb(std::string word, int wordlen, int q);					//computes Prob(word[1,wordsize],q)
 																				//Input parameters: q -starting and terminal states; word - word, wordsize - length of word
 
-extern vector<int> ConsistStates(int q);										//list of states q' such that ï(q',q) > 0		
+extern vector<int> ConsistStates(int q);										//list of states q' such that Ð¿(q',q) > 0		
+
+
+
+#endif // H_M_DATA_H
 

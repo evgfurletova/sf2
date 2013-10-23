@@ -1,3 +1,5 @@
+#ifndef SF_MAIN_H
+#define SF_MAIN_H
 #ifdef __cplusplus
 //set some input parameters
 extern "C" int func_set_input_data( int order, int mode, int TLen, int NOccur);
@@ -53,3 +55,4 @@ extern int func_analis_pattern_data_5(char *consensus, int NSymbols, char **Cons
 extern int func_main(double* pvalue, char** report, char* **ResWords, int *NWords);
 #endif
 
+#endif

@@ -32,10 +32,9 @@ public:
 	static void ProbCalc(void); //computation of Pvalue
 };
 
-
-#endif
-
 //AUXILARY LISTS
 extern double** BDProbs; //Let w be processed node, n- current stage; depth - depth of the path leading to w
 						//x_0,..x_depth - overlap prefixes of w, x_depth = w
 						//BDPobs[k][p] = Prob(D(n-m+|x_k|,p+1,x_k)), p= 0,...,p0-1, k = 0, ..,depth 
+
+#endif

@@ -48,7 +48,7 @@ double** OrderProbs = nullptr;							//For Markov model, let t be a prefix of mo
 //Input parameters: q1, q2 -starting and terminal states; word - word, wordsize - length of word
 
 double TermCondProb(int q1, std::string &word,  int wordsize, int q2){
-	double p;
+	double p = 0;
 	if(MainData::order > 0){
 		p = MModel_Prob::TermCondProb(q1,word,wordsize,q2);
 	}
@@ -66,7 +66,7 @@ double TermCondProb(int q1, std::string &word,  int wordsize, int q2){
 //Input parameters: q -starting and terminal states; word - word, wordsize - length of word
 
 double TermProb(std::string word, int wordlen, int q){
-	double p;
+	double p = 0;
 	if(MainData::order > 0){
 		p = MModel_Prob::TermProb(word,wordlen,q); 
 	}
@@ -82,7 +82,7 @@ double TermProb(std::string word, int wordlen, int q){
 
 //calculates probability of transition from q1 to q2
 double TransitionProb(int q1, int q2){
-	double p;
+	double p = 0;
 	if(MainData::order > 0){
 		int s = q2/MainData::AlpSize;
 		s = q2 - s*MainData::AlpSize;
@@ -455,14 +455,20 @@ void Del_HMM_Mas(void){
 	free(PrevBnpProbs);
 	
 	for(i = 0; i < H_M_Node::NumAllStates; i++){
-		delete[] H_M_Node::ConsistStMatrix[i];
-		delete[] H_M_Node::TransProbMatrix[i];
+		free(H_M_Node::ConsistStMatrix[i]);
+		free(H_M_Node::TransProbMatrix[i]);
 	}
-	delete[] H_M_Node::ConsistStMatrix;
-	delete[] H_M_Node::TransProbMatrix;
+	free(H_M_Node::ConsistStMatrix);
+	free(H_M_Node::TransProbMatrix);
 	free(H_M_Node::TransStepProbMatrix);
 	free(PrevTransStepProbMatrix);
 	free(H_M_Node::ConsistStNums);
+
+	H_M_Node::ConsistStMatrix  = nullptr;
+	H_M_Node::TransProbMatrix = nullptr;
+	H_M_Node::TransStepProbMatrix = nullptr;
+	PrevTransStepProbMatrix = nullptr;
+	H_M_Node::ConsistStNums = nullptr;
 
 	for(i = 0; i < MaxDepth; i++)
 		free(HDProbs[i]);	

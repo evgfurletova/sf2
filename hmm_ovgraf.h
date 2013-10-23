@@ -1,4 +1,4 @@
-#ifndef HMM_OVGRAF_H
+﻿#ifndef HMM_OVGRAF_H
 #define HMM_OVGRAF_H
 #include "h_m_node.h"
 #include "statedata.h"

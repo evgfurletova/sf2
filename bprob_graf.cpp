@@ -5,9 +5,9 @@
 		//Len p0 - be desired number of occurences; n0- text length; 
 		//n - current stage of the algorithm; m - pattern length; Alp - alphabet; HH - pattern
 
-double*	BSumProb;	     //BSumProb[j] = Sum_{k<=n}R(k,j,HH)
+double*	BSumProb = nullptr;	     //BSumProb[j] = Sum_{k<=n}R(k,j,HH)
 
-double** BDProbs;		//Let w be processed node, n- current stage; depth - depth of the path leading to w
+double** BDProbs = nullptr;		//Let w be processed node, n- current stage; depth - depth of the path leading to w
 						//x_0,..x_depth - overlap prefixes of w, x_depth = w
 						//BDPobs[k][p] = Prob(D(n-m+|x_k|,p+1,x_k)), p= 0,...,p0-1, k = 0, ..,depth 
 

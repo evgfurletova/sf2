@@ -48,12 +48,12 @@ extern "C" int func_set_input_data( int order, int mode, int TLen, int NOccur)
 	MainData::mode = mode;
 	MainData::TLen = TLen;
 	MainData::NOccur = NOccur;
-	
+	/*
 	cout<<"Text length: "<<MainData::TLen<<'\n';
 	cout<<"Number of occurences: "<<MainData::NOccur<<'\n';
 	cout<<"Order of the probability model: "<<MainData::order<<'\n';
 	cout<<"Type of pattern description: "<<MainData::mode<<'\n';
-
+	*/
 	return 0;
 }
 
@@ -90,6 +90,7 @@ extern "C" int func_analis_alp_bern_data(int AlpSize, char* AlpMas, double* Bern
 		MainData::BernProb[i] = BernProb[i];
 		sum = sum + BernProb[i];
 	}
+	/*
 	cout<<"Sum of the frequences: "<<sum<<'\n';
 	if((sum < 0.999999)||(sum > 1.00001)){
 		cout<<Error_line;
@@ -105,6 +106,7 @@ extern "C" int func_analis_alp_bern_data(int AlpSize, char* AlpMas, double* Bern
 	for(i = 0; i < AlpSize; i++)
 		cout<<MainData::BernProb[i]<<'\t';
 	cout<<'\n';
+	*/
 	return 0;
 }
 
@@ -157,7 +159,7 @@ extern "C" int func_analis_alp_mark_data(int AlpSize, char* AlpMas, double* IniP
 		}
 	}
 	MainData::CrDistribFlag = 1;
-	
+	/*
 	cout<<"Alphabet \n";
 	for(i = 0; i < AlpSize; i++)
 		cout<<MainData::AlpMas[i]<<'\t';
@@ -172,6 +174,7 @@ extern "C" int func_analis_alp_mark_data(int AlpSize, char* AlpMas, double* IniP
 		}
 	}
 	cout<<'\n';
+	*/
 	return 0;
 }
 
@@ -226,6 +229,7 @@ extern "C" int func_analis_alp_dhhm_data(int AlpSize, char* AlpMas, int NumAllSt
 	}	
 	MainData::CrDistribFlag = 1;
 	
+	/*
 	cout<<"Alphabet \n";
 	for(i = 0; i < AlpSize; i++)
 		cout<<MainData::AlpMas[i]<<'\t';
@@ -246,6 +250,7 @@ extern "C" int func_analis_alp_dhhm_data(int AlpSize, char* AlpMas, int NumAllSt
 		cout<<'\n';
 	}
 	cout<<'\n';
+	*/
 	return 0;
 }
 
@@ -358,8 +363,10 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 	
 	MainData::NWords = 0;
 
+	
 	for(i = 0; i < NWords; i++){
-		if(strlen(WordsList[i]) == MainData::WordLen){					
+		int wlen = (int)strlen(WordsList[i]);
+		if(wlen == MainData::WordLen){					
 			for(j = 0; j< MainData::WordLen; j++){
 				k = MainData::AToi(WordsList[i][j]);
 				if(k != -1){
@@ -386,8 +393,10 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 	delete[] DigitLine;
 
 	MainData::NWords += NWords;
+	/*
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
+	*/
 	return 0;
 }
 
@@ -448,10 +457,10 @@ extern "C" int func_analis_pattern_data_1(int NWords, int WordLen, double* RandP
 	MainData::GenRanWords();
 	
 	delete[] MainData::RandPatProbs;
-	
+	/*
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
-	
+	*/
 	return 0;
 }
 
@@ -508,7 +517,7 @@ extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char *
 	delete[] word;
 	delete[] SMas;
 	SMas = NULL;
-	
+	/*
 	cout<<"PSSM \n";
 	for(i = 0; i < MainData::WordLen; i++){
 		int j;
@@ -523,7 +532,7 @@ extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char *
 	}
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
-
+	*/
 	return 0;
 }
 
@@ -613,6 +622,7 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 
 	delete[] MainData::motif;
 	delete[] word;
+	/*
 	cout<<"Motif: "<<motif<<'\n';
 	if(NConstPositions > 0){
 		cout<<"Constant positions: \n";
@@ -624,6 +634,7 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 	cout<<"Number of replacements: "<<Nreplace<<'\n';
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
+	*/
 	return 0;
 }
 
@@ -727,7 +738,7 @@ extern "C" int func_analis_pattern_data_5(char *consensus, int NSymbols, char **
 	}
 	delete[] word;
 	delete[] MainData::consensus;
-
+	/*
 	cout<<"Consensus: "<<consensus<<'\n';
 	cout<<"Consensus alphabet \n";
 	s = (int)MainData::ConsAlp.size();
@@ -742,6 +753,7 @@ extern "C" int func_analis_pattern_data_5(char *consensus, int NSymbols, char **
 	cout<<'\n';
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
+	*/
 	return 0;
 }
 

@@ -1,4 +1,4 @@
-#include "nodeac.h"
+п»ї#include "nodeac.h"
 #include "nodeov.h"
 #include "nodebern.h"
 //#include "H_M_Data.h"
@@ -518,7 +518,7 @@ int NodeOv::CreateGraf(void){
 	RLeafPreds = Malloc<int>(MainData::NWords);		//right parents of leaves
 
 	if(MainData::order == 0){
-		LeafProbs = Malloc<double>(MainData::NWords);       // Вероятности слов
+		LeafProbs = Malloc<double>(MainData::NWords);       // Probabilities of words
 	    LeafBacks = Malloc<double>(MainData::NWords);	    // Back for leaves
 	}
 	else{

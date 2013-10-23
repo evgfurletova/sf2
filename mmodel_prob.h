@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef MMODEL_PROB_H
+#define MMODEL_PROB_H
 #include <string>
 #include <vector>
 #include "statedata.h"
@@ -27,3 +27,4 @@ public:
 	MModel_Prob(void);
 	~MModel_Prob(void);
 };
+#endif

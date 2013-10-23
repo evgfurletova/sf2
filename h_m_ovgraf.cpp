@@ -1,4 +1,4 @@
-
+ï»¿
 #include "nd_hhm_prob.h"
 #include "d_hhm_prob.h"
 #include "maindata.h"
@@ -163,10 +163,8 @@ void ClosePartCalc(H_M_Node* node, int n,int depth){
 //Input parameters: node - current processing node w; n - stage of the algorithm minus motif length (we will think that n is algorithm stage)
 //depth - depth of branch leading from root to the node
 void ComputeMainInduction(H_M_Node* node, int n, int depth){
-	int i;
-	if(node->num == 18){
-		i = 8;
-	}
+	
+	
 	//////////////////PROCESSING OF NODE //////////////////////////////////////
 	if(node != NodeOv::Root){
 		//////// 1. Computation of D-sets probabilities //////////////////////
@@ -189,11 +187,10 @@ void ComputeMainInduction(H_M_Node* node, int n, int depth){
 		depth++;
 	////////////////////////PROCESSING OF CHILDS OF NODE//////////////////////////////////////////////
 	
-	for( i = 0; i < node->NLChilds; i++){
+	for(int i = 0; i < node->NLChilds; i++){
 		H_M_Node* LC = static_cast<H_M_Node*>(node->LChilds[i]);
 		ComputeMainInduction(LC, n, depth);
 	}
-	return;
 }
 
 
@@ -222,13 +219,13 @@ void CalcBnp(int n){
 		//compute Prob(B(n-m,j).V),q)
 		for(i = 0; i < H_M_Node::NumAllStates; i++){ //for all q in Q
 			if(MainData::order < 0){
-				s = H_M_Node::ConsistStNums[i];		//for all q' s.t. ï(q',q)>0
+				s = H_M_Node::ConsistStNums[i];		//for all q' s.t. Ð¿(q',q)>0
 			}
 			
-			sum = 0; //variable to compute Sum_{q'}Prob(B(n-m-1,j),q')*ï(q',q)
+			sum = 0; //variable to compute Sum_{q'}Prob(B(n-m-1,j),q')*Ð¿(q',q)
 	        for(k = 0; k < s; k++){
 				int state = H_M_Node::ConsistStMatrix[i][k];
-				sum += PrevBnpProbs[state* MainData::NOccur + j]*H_M_Node::TransProbMatrix[i][k];  //Sum += Prob(B(n-m-1,j),q')*ï(q',q)
+				sum += PrevBnpProbs[state* MainData::NOccur + j]*H_M_Node::TransProbMatrix[i][k];  //Sum += Prob(B(n-m-1,j),q')*Ð¿(q',q)
 			}
 				
 			H_M_Node::BnpProbs[i*MainData::NOccur + j]= sum;

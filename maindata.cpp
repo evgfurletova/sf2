@@ -365,14 +365,14 @@ int GetAlp(void){
 			s = s*MainData::AlpSize;
 		}
 		if(MainData::MarkovType == 1){
-			//@@@@@
+			
 			//MModel_Prob::IniProbs = new double[s];
 			FNonEmptyLine(&ff,line);
 			i = 0;	
 			while((strlen(line) != 0)&&(i < s)){
 				pch = strtok(line,delim);
 				if(Figure(pch) == 0){
-				//@@@@@@@@@@
+				
 					//	MModel_Prob::IniProbs[i] = atof(pch);
 				}
 				else{
@@ -883,7 +883,7 @@ double MainData::CountThr(char *word){
 int GetThr(void){
 
 int i=1;
-double t;
+double t = -100;
 char *line = new char[WordLenMax];
 ifstream ff(MainData::FootPrintFileName.c_str());	
 
@@ -894,6 +894,13 @@ ifstream ff(MainData::FootPrintFileName.c_str());
 	
 
 	ff.getline(line,WordLenMax);
+
+
+	int s = (int)strlen(line);
+	if(s < MainData::WordLen){
+		delete[] line;
+		return 43;
+	}
 
 	if((line[0]!=0)&(line[0]!='!'))
 
@@ -1947,6 +1954,10 @@ void MainData::ErrorDetect(int Error){
 	}
 	if(Error == 42){
 		cerr<<"Error42: Error in the pattern description. Number of mismatches can not be bigger than pattern length minus number of constant positions"<<'\n';
+	}
+
+	if(Error == 43){
+		cerr<<"Error42: Error in the pattern description. Lengthes of footprints must be at least length of words in the pattern"<<'\n';
 	}
 	return;
 }
