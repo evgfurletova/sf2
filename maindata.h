@@ -71,7 +71,7 @@ public:
 	static std::string consensusstr;
 	static vector< vector<char> > ConsAlp;	//alphabet for consensus
 	//3.2.5 parameters for random pattern
-	static double* RandPatProbs;			//probabilities to generate a random pattern	
+    static double* RandPatProbs;			//probabilities to generate a random pattern
 	// 3.3 Information for calculating of probabilities
 	static int TLen;						//length of random text 
 	static int NOccur;						// Maximal number of patterns occurrences in the text
