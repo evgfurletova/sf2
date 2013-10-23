@@ -45,6 +45,7 @@ sf_main.cpp
 
 
 add_executable(sufpref ${SOURCES})
+target_link_libraries(sufpref -lstdc++ -lm)
 
 if(NOT WIN32)
 
@@ -55,6 +56,7 @@ set(PY_SOURCES
 
 PYTHON_ADD_MODULE(sf ${SOURCES} ${PY_SOURCES})
 set_target_properties(sf PROPERTIES PREFIX "")
+target_link_libraries(sf -lstdc++ -lm)
 
 exec_program(
 	${PYTHON_EXECUTABLE}

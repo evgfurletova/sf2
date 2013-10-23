@@ -1236,6 +1236,8 @@ int MainData::GetInput(void){
 		
 
 	if(mode == 4){
+		//NWords ++;
+//		NodeAC::ACRoot->InsertWord(motif, NWords);
 		int* word = new int[MainData::WordLen + 1];
 		word[MainData::WordLen]= -1;
 		for(i = 0; i < WordLen; i++){

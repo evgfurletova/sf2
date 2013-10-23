@@ -83,7 +83,7 @@ EXTERN PyObject* py_func_analis_alp_mark_data(PyObject *self, PyObject *args, Py
     if (!PyArg_ParseTupleAndKeywords(args, keywds, "sOO", kwlist, &AlpMas, &l, &l2))
         return NULL;
     AlpSize = strlen(AlpMas);
-    assert (AlpSize==PyList_Size(l));
+    /* assert (AlpSize==PyList_Size(l)); */
 
     l_size = PyList_Size(l);
 	

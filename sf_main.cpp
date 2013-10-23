@@ -456,7 +456,10 @@ extern "C" int func_analis_pattern_data_1(int NWords, int WordLen, double* RandP
 	}
 	MainData::GenRanWords();
 	
-	delete[] MainData::RandPatProbs;
+    if (MainData::RandPatProbs) {
+        delete[] MainData::RandPatProbs;
+        MainData::RandPatProbs = 0;
+    }
 	/*
 	cout<<"Number of words in the pattern: "<<MainData::NWords<<'\n';
 	cout<<"Length of the pattern "<<MainData::WordLen<<'\n';
@@ -588,7 +591,8 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 		}
 	}
 	MainData::Nreplace = Nreplace;
-	
+	//MainData::NWords ++;
+	//AC_Trie::gTrie->InsertWord(MainData::motif, MainData::NWords);
 		
 	int s = NConstPositions;
 	if(s > 0){
@@ -859,7 +863,10 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 	
 	
 	if(MainData::mode == 1){
-		delete[] MainData::RandPatProbs;
+        if (MainData::RandPatProbs) {
+            delete[] MainData::RandPatProbs;
+            MainData::RandPatProbs = 0;
+        }
 	}
 	if((MainData::order > 0)&&(MainData::CrDistribFlag == 1)){
 		for(i = 0; i < MainData::AlpSize; i++){
