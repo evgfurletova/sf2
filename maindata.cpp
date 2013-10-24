@@ -385,14 +385,14 @@ int GetAlp(void){
 		}
 		if(MainData::MarkovType == 1){
 			
-			//MModel_Prob::IniProbs = new double[s];
+            MModel_Prob::IniProbs = new double[s];
 			FNonEmptyLine(&ff,line);
 			i = 0;	
 			while((strlen(line) != 0)&&(i < s)){
 				pch = strtok(line,delim);
 				if(Figure(pch) == 0){
 				
-					//	MModel_Prob::IniProbs[i] = atof(pch);
+                    MModel_Prob::IniProbs[i] = atof(pch);
 				}
 				else{
 					delete[] line;
