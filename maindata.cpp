@@ -320,6 +320,11 @@ int GetAlp(void){
 	char* pch;
 	char delim[] =", ; \t";
 	FNonEmptyLine(&ff,line);
+    if (strlen(line) == 0u) {
+        delete[] line;
+        line = nullptr;
+        return 7;
+    }
 	pch = strtok(line,delim);
 	if(Figure(pch) == 0){
 		MainData::order = atoi(line);
