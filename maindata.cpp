@@ -371,9 +371,19 @@ int GetAlp(void){
 			line = nullptr;
 			return 5;
 		}
+        double check_summ = 0.0;
 		for(i = 0; i < MainData::AlpSize; i++){
-			MainData::BernProb[i] = MainData::BernProb[i]/norm;
+            check_summ += MainData::BernProb[i];
 		}
+        bool valid =
+                0.9999 <= check_summ &&
+                check_summ <= 1.00001;
+
+        if (! valid) {
+            delete[] line;
+            line = nullptr;
+            return 7;
+        }
 	}
 
 	if(MainData::order > 0){
