@@ -871,6 +871,9 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 			H_M_Node::ProbCalc();  //P-value computation for other models (see h_m_node.h, h_m_ovgraf.cpp)	
 
 		MainData::PrintMain(&out,0);
+        if (MainData::order != 0) {
+            H_M_Node::ClearData();
+        }
 	}
 	
 	

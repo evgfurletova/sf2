@@ -1698,7 +1698,9 @@ void MainData::PrintMain(ostream *ff,int exitflag){
 			*(ff)<<"Initial probabilities \n";
 		
 		for(i = 0; i < H_M_Node::NumAllStates; i++){
-				*(ff)<<MModel_Prob::IniProbs[i]<<'\n';
+                if (MModel_Prob::IniProbs) {
+                    *(ff)<<MModel_Prob::IniProbs[i]<<'\n';
+                }
 			}
 	}
 		*(ff)<<"Distribution of letters (in the prefix order) \n";

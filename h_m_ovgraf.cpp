@@ -397,7 +397,7 @@ void H_M_Node::ProbCalc(void){
 	}
 
 
-	ClearData(); //delete descriptors of nodes of OVGraph
+    //ClearData(); //delete descriptors of nodes of OVGraph
 	
 	return;
 }
