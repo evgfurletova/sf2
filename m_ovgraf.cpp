@@ -286,6 +286,7 @@ void m_ovgraf::WordProbs(string &word){
 	}
 	
 	free(Flags);
+	Flags = nullptr;
 
 	///////////////////Initialization of WordProbs data structures (see MTrTree.h)///////////////////////
 	for(i = 0; i < MModel_Prob::Power; i++){
@@ -366,6 +367,7 @@ void m_ovgraf::WordProbs(string &word){
 		}
 	}
 	free(Probs);
+	Probs = nullptr;
 	
 
 }

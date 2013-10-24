@@ -115,8 +115,10 @@ H_M_Node::~H_M_Node()
 	for(i = 0; i < NStates; i++){
 		States[i]->Clear(NDLinks,this->rdeep);
 		delete States[i];
+		States[i] = nullptr;
 	}
 	free(States);
+	States = nullptr;
 
 }
 
@@ -153,11 +155,16 @@ void H_M_State::Clear(int NDLinks, int rflag)
 	free(NumDeepProbs);	
 
     int i;
-    for(i = 0; i < NDLinks; i++)
+    for(i = 0; i < NDLinks; i++){
         delete[] DeepProbs[i];
+		DeepProbs[i] = nullptr;
+	}
     delete[] DeepProbs;
+	DeepProbs = nullptr;
 	free(FirstTemp);
 	free(ProbMark);	
+	FirstTemp = nullptr;
+	ProbMark= nullptr;
 
 	if((MainData::order <0)&&(rflag == 1)){
 		HMM_State* state = static_cast<HMM_State*>(this);
@@ -181,11 +188,14 @@ M_TrTree::~M_TrTree(){
 	free(States);
     int i;
 	for(i = 0; i < MainData::AlpSize; i++){
-		if(Childs[i] != nullptr)
+		if(Childs[i] != nullptr){
 			delete Childs[i];
+			Childs[i] = nullptr;
+		}
 	}
 
     delete[] Childs;
+	Childs = nullptr;
  
 };
 
@@ -203,8 +213,11 @@ KM_TrTree::~KM_TrTree(){
 	free(WLinks);
 	free(NumWProbs);
 	int i;
-	for(i = 0; i < NumWLinks; i++)
+	for(i = 0; i < NumWLinks; i++){
         delete[] WProbs[i];
+		WProbs[i] = nullptr;
+	}
     delete[] WProbs;
+	WProbs = nullptr;
 };
 	

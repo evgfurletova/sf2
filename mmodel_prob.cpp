@@ -255,6 +255,7 @@ double VecProduct(void){
 		MModel_Prob::IniProbs[i] = vec[i];
 	}
 	delete[] vec;
+	vec = nullptr;
 	return norm;
 }
 
@@ -318,6 +319,7 @@ int i,j,pos,s;
 			Mass[i] = vec[i];
 		}	
 		delete[] vec;
+		vec = nullptr;
 	}
 	return;
 }

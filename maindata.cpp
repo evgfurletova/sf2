@@ -168,6 +168,7 @@ int Get_ND_HHM(ifstream *ff){
 		while((strlen(line) != 0)&&(j <H_M_Node::NumAllStates)){
 			if(line[0] == '-'){
 				delete[] line;
+				line = nullptr;
 				return 7;
 			}
 			pch = strtok(line,delim);
@@ -182,6 +183,7 @@ int Get_ND_HHM(ifstream *ff){
 				}
 				else{
 					delete[] line;
+					line = nullptr;
 					return 4;
 				}
 				pch = strtok(NULL,delim);
@@ -190,6 +192,7 @@ int Get_ND_HHM(ifstream *ff){
 		
 			if(k != MainData::AlpSize){
 				delete[] line;
+				line = nullptr;
 				return 6;
 			}
 			FNonEmptyLine(ff,line);
@@ -200,10 +203,11 @@ int Get_ND_HHM(ifstream *ff){
 	}
 	if(i != H_M_Node::NumAllStates){
 		delete line;
+		line = nullptr;
 		return 6;
 	}
 	delete[] line;
-	
+	line = nullptr;
 	return 0;
 }
 
@@ -241,6 +245,7 @@ int Get_D_HHM(ifstream *ff){
 			}
 			else{
 				delete[] line;
+				line = nullptr;
 				return 4;
 			}
 			pch = strtok(NULL,delim);
@@ -249,6 +254,7 @@ int Get_D_HHM(ifstream *ff){
 		
 		if(j != MainData::AlpSize){
 			delete[] line;
+			line = nullptr;
 			return 6;
 		}
 		FNonEmptyLine(ff,line);
@@ -257,6 +263,7 @@ int Get_D_HHM(ifstream *ff){
 
 	if(i != H_M_Node::NumAllStates){
 		delete[] line;
+		line = nullptr;
 		return 6;
 	}
 
@@ -272,6 +279,7 @@ int Get_D_HHM(ifstream *ff){
 			}
 				else{
 					delete[] line;
+					line = nullptr;
 					return 4;
 				}
 				pch = strtok(NULL,delim);
@@ -280,6 +288,7 @@ int Get_D_HHM(ifstream *ff){
 		
 			if(j != MainData::AlpSize){
 				delete[] line;
+				line = nullptr;
 				return 6;
 			}
 			FNonEmptyLine(ff,line);
@@ -287,11 +296,13 @@ int Get_D_HHM(ifstream *ff){
 		}
 	if(i != H_M_Node::NumAllStates){
 		delete[] line;
+		line = nullptr;
 		return 8;
 	}
 
 
 	delete[] line;
+	line = nullptr;
 	return 0;
 }
 
@@ -315,6 +326,7 @@ int GetAlp(void){
 	}
 	else{
 		delete[] line;
+		line = nullptr;
 		return 3;
 	}
 
@@ -342,6 +354,7 @@ int GetAlp(void){
 			}
 			else{
 				delete[] line;
+				line = nullptr;
 				return 4;
 			}
 			pch = strtok(NULL,delim);
@@ -350,6 +363,7 @@ int GetAlp(void){
 		
 		if((i != MainData::AlpSize)||(norm <= 0)){
 			delete[] line;
+			line = nullptr;
 			return 5;
 		}
 		for(i = 0; i < MainData::AlpSize; i++){
@@ -377,6 +391,7 @@ int GetAlp(void){
 				}
 				else{
 					delete[] line;
+					line = nullptr;
 					return 4;
 				}
 				FNonEmptyLine(&ff,line);
@@ -384,6 +399,7 @@ int GetAlp(void){
 			}
 			if(i != s){
 				delete[] line;
+				line = nullptr;
 				return 6;
 			}
 		}
@@ -408,6 +424,7 @@ int GetAlp(void){
 				}
 				else{
 					delete[] line;
+					line = nullptr;
 					return 4;
 				}
 				pch = strtok(NULL,delim);
@@ -416,6 +433,7 @@ int GetAlp(void){
 		
 			if(j != MainData::AlpSize){
 				delete[] line;
+				line = nullptr;
 				return 6;
 			}
 			FNonEmptyLine(&ff,line);
@@ -423,6 +441,7 @@ int GetAlp(void){
 		}
 		if(i != s){
 			delete[] line;
+			line = nullptr;
 			return 6;
 		}
 	}
@@ -441,6 +460,7 @@ int GetAlp(void){
 
 	ff.close();
 	delete[] line;
+	line = nullptr;
   return 0;
 
 }
@@ -513,6 +533,7 @@ ifstream ff(MainData::PatternFileName.c_str());
 
 	if (!ff){
 		delete[] line;
+		line = nullptr;
 		return 11;
 	}
 		
@@ -529,7 +550,9 @@ ifstream ff(MainData::PatternFileName.c_str());
 			}
 			else{
 				delete[] line;
+				line = nullptr;
 				delete[] DigitLine;
+				DigitLine = nullptr;
 				return 12;
 			}
 		}
@@ -550,6 +573,8 @@ ifstream ff(MainData::PatternFileName.c_str());
 				else{
 					delete[] line;
 					delete[] DigitLine;
+					line = nullptr;
+					DigitLine = nullptr;
 					return 12;
 				}
 			}
@@ -561,6 +586,8 @@ ifstream ff(MainData::PatternFileName.c_str());
 		else{
 			delete[] line;
 			delete[] DigitLine;
+			DigitLine = nullptr;
+			line = nullptr;
 			return 13;
 		}
 	}
@@ -569,6 +596,8 @@ ifstream ff(MainData::PatternFileName.c_str());
 	ff.close();
 	delete[] line;
 	delete[] DigitLine;
+	DigitLine = nullptr;
+	line = nullptr;
 	return 0;
 
 }
@@ -646,6 +675,7 @@ void RanWord(int* &rword){
 		if(res == 1) i++;
 	}
 	delete[] rword;
+	rword = nullptr;
 	return 0; 
 }
 
@@ -735,9 +765,11 @@ int GetPssm(int* error){
 			MainData::PssmMas[i][j] = PSSM[i][j];
 		}
 		delete[] PSSM[i];
+		PSSM[i] = nullptr;
 	}
 	PSSM.clear();
 	delete[] line;
+	line = nullptr;
 	ff.close();
 	return len;
 }
@@ -889,6 +921,7 @@ ifstream ff(MainData::FootPrintFileName.c_str());
 
 	if (!ff){
 		delete[] line;
+		line = nullptr;
 		return 15;
 	}
 	
@@ -899,6 +932,7 @@ ifstream ff(MainData::FootPrintFileName.c_str());
 	int s = (int)strlen(line);
 	if(s < MainData::WordLen){
 		delete[] line;
+		line = nullptr;
 		return 43;
 	}
 
@@ -919,6 +953,7 @@ ifstream ff(MainData::FootPrintFileName.c_str());
 		}
 		
 	delete[] line;
+	line = nullptr;
 	ff.close();
 	return 0;
 
@@ -1025,6 +1060,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 
 	if (!ff){
 		delete[] line;
+		line = nullptr;
 		return 1;
 	}
 	FNonEmptyLine(&ff,line);
@@ -1034,6 +1070,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 		Let = pch[0];
 		if(strlen(pch)!= 1){
 			delete[] line;
+			line = nullptr;
 			return 17;
 		}
 		std::vector<char> vec;
@@ -1046,6 +1083,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 			}
 			else{
 				delete[] line;
+				line = nullptr;
 				return 17;
 			}
 			pch = strtok(NULL,delim);
@@ -1058,6 +1096,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 		pch = strtok(line,delim);
 		if(strlen(pch)!= 1){
 			delete[] line;
+			line = nullptr;
 			return 17;
 		}
 		Let = pch[0];
@@ -1071,6 +1110,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 			}
 			else{
 				delete[] line;
+				line = nullptr;
 				return 17;
 			}
 			pch = strtok(NULL,delim);
@@ -1084,6 +1124,7 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 		for(j =i+1; j < s; j ++){
 			if(MainData::ConsAlp[i][0]==MainData::ConsAlp[j][0]){
 				delete[] line;
+				line = nullptr;
 				return 36;
 			}
 		}
@@ -1096,12 +1137,14 @@ ifstream ff(MainData::ConsAlpFileName.c_str());
 			for(k = j+1; k < s1; k++){
 				if(MainData::ConsAlp[i][j]==MainData::ConsAlp[i][k]){
 					delete[] line;
+					line = nullptr;
 					return 35;
 				}
 			}
 		}
 	}
 	delete[] line;
+	line = nullptr;
 	return 0;
 };
 
@@ -1196,9 +1239,11 @@ int MainData::GetInput(void){
 		if(i == -1){
 			int er = error[0];
 			delete[] error;
+			error = nullptr;
 			return er;
 		}
 		delete[] error;
+		error = nullptr;
 		WordLen = i;
 
 		if(mode == 3){
@@ -1218,6 +1263,8 @@ int MainData::GetInput(void){
 			if(MainData::NOccur > 1){
 				delete[] word;
 				delete[] SMas;
+				word = nullptr;
+				SMas = nullptr;
 				return 100;
 			}
 			else stword.resize(WordLen);
@@ -1228,10 +1275,14 @@ int MainData::GetInput(void){
 		if(TLen == WordLen){
 			delete[] word;
 			delete[] SMas;
+			word = nullptr;
+			SMas = nullptr;
 			return 100;
 		}
 		delete[] word;
 		delete[] SMas;
+		word = nullptr;
+		SMas = nullptr;
 	}
 		
 
@@ -1246,6 +1297,8 @@ int MainData::GetInput(void){
 		MotifVariations1(NodeAC::ACRoot, Nreplace, 0, word);
 		delete[] MainData::motif;
 		delete[] word;
+		MainData::motif = nullptr;
+		word = nullptr;
 	}
 	if(MainData::mode == 5){
 		i = GetConsensusAlp();
@@ -1262,6 +1315,7 @@ int MainData::GetInput(void){
 			}
 			else{
 				delete[] consensus;
+				consensus = nullptr;
 				return 18;
 			}
 		}
@@ -1274,6 +1328,8 @@ int MainData::GetInput(void){
 		}
 		delete[] word;
 		delete[] MainData::consensus;
+		word = nullptr;
+		MainData::consensus = nullptr;
 	}
 
 	if(NWords == 0){
@@ -1421,6 +1477,7 @@ int ParseLine(int i, char **argv, int argc){
 						}
 						else{
 							delete[] MainData::motif;
+							MainData::motif = nullptr;
 							return 12;
 						}
 					}
@@ -1455,12 +1512,16 @@ int ParseLine(int i, char **argv, int argc){
 					else{
 						delete[] MainData::ConstPositions;
 						delete[] MainData::motif;
+						MainData::ConstPositions = nullptr;
+						MainData::motif = nullptr;
 						return 10;
 					}
 				}
 				if(MainData::WordLen - MainData::NumConstPositions <MainData::Nreplace){
 					delete[] MainData::ConstPositions;
 					delete[] MainData::motif;
+					MainData::ConstPositions = nullptr;
+					MainData::motif = nullptr;
 					return 42;
 				}
 			}
@@ -1904,7 +1965,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 27){
-		cerr<<"Error27: Incorrect number of states of the HHM"<<'\n';
+		cerr<<"Error27: Incorrect number of states of the HMM"<<'\n';
 		return;
 	}
 	if(Error == 28){

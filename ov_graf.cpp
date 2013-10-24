@@ -182,6 +182,7 @@ void CreateLOG(NodeAC* T, NodeOv* LParent, double prob, double Back, int len, st
 			//RECURSION, MAINTAINING OF PREFIX SUCCESSORS OF T 
 		    std::list<NodeAC*> LChilds = node->LChilds;
 			delete node; //delete processed node T of the trie
+			node = nullptr;
 
 			for(i = LChilds.begin(); i != LChilds.end(); i++){
 				NodeAC* LCnode = *i;
@@ -193,8 +194,10 @@ void CreateLOG(NodeAC* T, NodeOv* LParent, double prob, double Back, int len, st
 			//processing of internal nodes that are not overlaps, maintaning of prefix successors of T
 
 			std::list<NodeAC*> LChilds = node->LChilds;
-			if(node != NodeAC::ACRoot) delete node; //delete processed node T of the trie
-
+			if(node != NodeAC::ACRoot){
+				delete node; //delete processed node T of the trie
+				node = nullptr;
+			}
 			for(i = LChilds.begin(); i != LChilds.end(); i++){
 				NodeAC* LCnode = *i;
 				CreateLOG(LCnode,LParent,prob,Back,len,BackW, Word);
@@ -217,6 +220,7 @@ void CreateLOG(NodeAC* T, NodeOv* LParent, double prob, double Back, int len, st
 			WLeafWords_size += MainData::WordLen;
 		}
 		delete T; 
+		T = nullptr;
 	}
 	if((T!= NodeAC::ACRoot)&&(MainData::order != 0)){
 		BackW[backlen - 1] = symb;
@@ -337,6 +341,7 @@ int CrChilds(void){
 	}
 	
 	free(CurNumRChilds);
+	CurNumRChilds = nullptr;
 	
 
 
@@ -580,11 +585,15 @@ int NodeOv::CreateGraf(void){
 	free(NumLLeafChilds);
 	for(i = 0; i < NodeOv::NumOVNodes; i++){
 		delete[] LLeafChilds[i];
+		LLeafChilds[i] = nullptr;
 	}
 	delete[] LLeafChilds;
+	LLeafChilds = nullptr;
 
 	free(NLOG);
 	free(NLink);
+	NLOG = nullptr;
+	NLink = nullptr;
 	
 	
 	return 0; 
@@ -603,5 +612,6 @@ void NodeOv::DeleteGraf(NodeOv* node){
 		NodeOv::DeleteGraf(node->LChilds[i]);
 	}
 	delete node;
+	node = nullptr;
 	return;
 };

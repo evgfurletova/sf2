@@ -374,6 +374,7 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 				}
 				else{
 					delete[] DigitLine;
+					DigitLine = nullptr;
 					cout<<Error_line;
 					MainData::Error = 12;
 					MainData::ErrorDetect(12);
@@ -384,6 +385,7 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 		}
 		else{
 			delete[] DigitLine;
+			DigitLine = nullptr;
 			cout<<Error_line;
 			MainData::Error = 13;
 			MainData::ErrorDetect(13);
@@ -391,6 +393,7 @@ extern "C" int func_analis_pattern_data_0(int NWords, char **WordsList)
 		}
 	}
 	delete[] DigitLine;
+	DigitLine = nullptr;
 
 	MainData::NWords += NWords;
 	/*
@@ -520,6 +523,7 @@ extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char *
 	delete[] word;
 	delete[] SMas;
 	SMas = NULL;
+	word = nullptr;
 	/*
 	cout<<"PSSM \n";
 	for(i = 0; i < MainData::WordLen; i++){
@@ -584,6 +588,7 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 		}
 		else{
 			delete[] MainData::motif;
+		    MainData::motif = nullptr;
 			cout<<Error_line;
 			MainData::Error = 12;
 			MainData::ErrorDetect(12);
@@ -608,6 +613,8 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 			else{
 				delete[] MainData::motif;
 				delete[] MainData::ConstPositions;
+				MainData::motif = nullptr;
+				MainData::ConstPositions = nullptr;
 				cout<<Error_line;
 				MainData::Error = 10;
 				MainData::ErrorDetect(10);
@@ -626,6 +633,8 @@ extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstP
 
 	delete[] MainData::motif;
 	delete[] word;
+	MainData::motif = nullptr;
+	word = nullptr;
 	/*
 	cout<<"Motif: "<<motif<<'\n';
 	if(NConstPositions > 0){
@@ -726,6 +735,7 @@ extern "C" int func_analis_pattern_data_5(char *consensus, int NSymbols, char **
 		}
 		else{
 			delete[] MainData::consensus;
+			MainData::consensus =  nullptr;
 			cout<<Error_line;
 			MainData::Error = 18;
 			MainData::ErrorDetect(18);
@@ -742,6 +752,8 @@ extern "C" int func_analis_pattern_data_5(char *consensus, int NSymbols, char **
 	}
 	delete[] word;
 	delete[] MainData::consensus;
+	word = nullptr;
+	MainData::consensus = nullptr;
 	/*
 	cout<<"Consensus: "<<consensus<<'\n';
 	cout<<"Consensus alphabet \n";
@@ -871,8 +883,10 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 	if((MainData::order > 0)&&(MainData::CrDistribFlag == 1)){
 		for(i = 0; i < MainData::AlpSize; i++){
 			delete[] MainData::MarkovProbs[i];
+			MainData::MarkovProbs[i] = nullptr;
 		}
 		delete[] MainData::MarkovProbs;
+		MainData::MarkovProbs = nullptr;
 	}
 	
 		int j;
@@ -880,21 +894,30 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 			for(i = 0; i < H_M_Node::NumAllStates; i++){
 				for(j = 0; j < H_M_Node::NumAllStates; j++){
 					delete[] MainData::ND_HHMProbs[i][j];
+					MainData::ND_HHMProbs[i][j] = nullptr;
 				}
 				delete[] MainData::ND_HHMProbs[i];
+				MainData::ND_HHMProbs[i] = nullptr;
 				MainData::ND_HHMTrans[i]->clear();
 				delete[] MainData::ND_HHMTrans[i];
+				MainData::ND_HHMTrans[i] = nullptr;
 			}
 			delete[] MainData::ND_HHMProbs;
 			delete[] MainData::ND_HHMTrans;
+			MainData::ND_HHMProbs = nullptr;
+			MainData::ND_HHMTrans = nullptr;
 		}
 		if((MainData::order == -1)&&(MainData::CrDistribFlag == 1)){
 			for(i = 0; i < H_M_Node::NumAllStates; i++){	
 				delete[] MainData::D_HHMProbs[i];
 				delete[] MainData::D_HHMTrans[i];
+				MainData::D_HHMProbs[i] = nullptr;
+				MainData::D_HHMTrans[i] = nullptr;
 			}
 			delete[] MainData::D_HHMProbs;
 			delete[] MainData::D_HHMTrans;
+			MainData::D_HHMProbs = nullptr;
+			MainData::D_HHMTrans = nullptr;
 		}
 		if(ExitFlag == 1){
 			cout<<Error_line;

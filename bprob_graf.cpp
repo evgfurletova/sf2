@@ -227,9 +227,13 @@ void NodeBern::ProbCalc(void){
 		}
 	}
 	free(BSumProb);
-	for(j = 0; j < MaxDepth; j++)
+	BSumProb = nullptr;
+	for(j = 0; j < MaxDepth; j++){
 		free(BDProbs[j]);
+		BDProbs[j] = nullptr;
+	}
 	free(BDProbs);
+	BDProbs = nullptr;
 
 	NodeOv::DeleteGraf(NodeOv::Root);
 	return;

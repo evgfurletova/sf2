@@ -171,12 +171,14 @@ void hmm_ovgraf::WordProbs(string &word){
 	for(i = 0; i < NodeOv::NumOVNodes; i++){
 		H_M_Node* node = static_cast<H_M_Node*>(Nodes[i]);
 		for(j = 0; j < node->NStates; j++){
-
 			delete[] WordProbs[i][j];
+			WordProbs[i][j] = nullptr;
 		}
 		delete[] WordProbs[i];
+		WordProbs[i] = nullptr;
 	}
 	delete[] WordProbs;
+	WordProbs = nullptr;
 	return;
 }
 

@@ -120,13 +120,18 @@ int main(int argc, char* argv[])
 	//Delete data structures
 
 	if(MainData::mode == 1){
-		delete[] MainData::RandPatProbs;
+		if(MainData::RandPatProbs != nullptr){
+			delete[] MainData::RandPatProbs;
+			MainData::RandPatProbs = nullptr;
+		}
 	}
 	if((MainData::order > 0)&&(MainData::CrDistribFlag == 1)){
 		for(i = 0; i < MainData::AlpSize; i++){
 			delete[] MainData::MarkovProbs[i];
+			MainData::MarkovProbs[i] = nullptr;
 		}
 		delete[] MainData::MarkovProbs;
+		MainData::MarkovProbs = nullptr;
 	}
 	if((MainData::Out_mode <2)&&(ExitFlag != 1)){
 		out<<std::setprecision(15)<<MainData::Pvalue<<'\n';
@@ -138,21 +143,30 @@ int main(int argc, char* argv[])
 		for(i = 0; i < H_M_Node::NumAllStates; i++){
 			for(j = 0; j < H_M_Node::NumAllStates; j++){
 				delete[] MainData::ND_HHMProbs[i][j];
+				MainData::ND_HHMProbs[i][j] = nullptr;
 			}
 			delete[] MainData::ND_HHMProbs[i];
+			MainData::ND_HHMProbs[i] = nullptr;
 			MainData::ND_HHMTrans[i]->clear();
 			delete[] MainData::ND_HHMTrans[i];
+			MainData::ND_HHMTrans[i] = nullptr;
 		}
 		delete[] MainData::ND_HHMProbs;
 		delete[] MainData::ND_HHMTrans;
+		MainData::ND_HHMProbs = nullptr;
+		MainData::ND_HHMTrans = nullptr;
 	}
 	if((MainData::order == -1)&&(MainData::CrDistribFlag == 1)){
 		for(i = 0; i < H_M_Node::NumAllStates; i++){	
 			delete[] MainData::D_HHMProbs[i];
 			delete[] MainData::D_HHMTrans[i];
+			MainData::D_HHMProbs[i] = nullptr;
+			MainData::D_HHMTrans[i] = nullptr;
 		}
 		delete[] MainData::D_HHMProbs;
 		delete[] MainData::D_HHMTrans;
+		MainData::D_HHMProbs = nullptr;
+		MainData::D_HHMTrans = nullptr;
 	}
 	
 	if(ExitFlag > 0){
@@ -165,12 +179,14 @@ int main(int argc, char* argv[])
 	if((MainData::mode == 2)||(MainData::mode == 3)){
 		for(i = 0; i < MainData::WordLen; i++){
 			delete[] MainData::PssmMas[i];
+			MainData::PssmMas[i] = nullptr;
 		}
 		delete[] MainData::PssmMas;
 		MainData::PssmMas = NULL;
 	}
 	if((MainData::mode == 4)&(MainData::ConstPositions != NULL)){
 		delete[] MainData::ConstPositions;
+		MainData::ConstPositions = nullptr;
 	}
 
 	//time0 = time(NULL) - time0;

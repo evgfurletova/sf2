@@ -359,6 +359,7 @@ void SetStatesData(void){
 
 		///free///
 		free(PosNNodeBacks);
+		PosNNodeBacks = nullptr;
 		WNodeBacks.clear();
 		///////
 		
@@ -367,6 +368,7 @@ void SetStatesData(void){
 		///free//////
 		CLasses.clear();
 		delete[] NLinkToClass;
+		NLinkToClass = nullptr;
 		///////
 
 		IniProbs(root);											//Initialization of ProbMark and Firsttemp
@@ -379,6 +381,9 @@ void SetStatesData(void){
 		free(Nodes);
 		free(RLeafPreds);
 		free(PosNLeafWords);
+		Nodes = nullptr;
+		RLeafPreds = nullptr;
+		PosNLeafWords = nullptr;
 		WLeafWords.clear();
 		/////////////////////////////
 
@@ -453,10 +458,14 @@ void Del_HMM_Mas(void){
 	int j;		
 	free(H_M_Node::BnpProbs);
 	free(PrevBnpProbs);
+	H_M_Node::BnpProbs = nullptr;
+	PrevBnpProbs = nullptr;
 	
 	for(i = 0; i < H_M_Node::NumAllStates; i++){
 		free(H_M_Node::ConsistStMatrix[i]);
 		free(H_M_Node::TransProbMatrix[i]);
+		H_M_Node::ConsistStMatrix[i] = nullptr;
+		H_M_Node::TransProbMatrix[i] = nullptr;
 	}
 	free(H_M_Node::ConsistStMatrix);
 	free(H_M_Node::TransProbMatrix);
@@ -464,22 +473,31 @@ void Del_HMM_Mas(void){
 	free(PrevTransStepProbMatrix);
 	free(H_M_Node::ConsistStNums);
 
+
 	H_M_Node::ConsistStMatrix  = nullptr;
 	H_M_Node::TransProbMatrix = nullptr;
 	H_M_Node::TransStepProbMatrix = nullptr;
 	PrevTransStepProbMatrix = nullptr;
 	H_M_Node::ConsistStNums = nullptr;
 
-	for(i = 0; i < MaxDepth; i++)
-		free(HDProbs[i]);	
+	for(i = 0; i < MaxDepth; i++){
+		free(HDProbs[i]);
+		HDProbs[i] = nullptr;
+	}
 	free(HDProbs);
+	HDProbs = nullptr;
 
 	if(MainData::order > 0){
 		free(MModel_Prob::IniProbs);
 		free(H_M_Node::TransStepProbList);
-		for(i = 0; i < MainData::order; i++)
+		MModel_Prob::IniProbs = nullptr;
+		H_M_Node::TransStepProbList = nullptr;
+		for(i = 0; i < MainData::order; i++){
 			free(OrderProbs[i]); 
+			OrderProbs[i] = nullptr;
+		}
 		free(OrderProbs);
+		OrderProbs = nullptr;
 	}
 	
 	/*
@@ -511,8 +529,10 @@ void Del_HMM_Mas(void){
 //Detete overlap graph
 void H_M_Node::ClearData(void){
 	Del_HMM_Mas();
-	if(MainData::order > 0)
+	if(MainData::order > 0){
 		delete M_TrTree::Root;
+	    M_TrTree::Root = nullptr;
+	}
 	  NodeOv::DeleteGraf(NodeOv::Root);
 	return;
 }

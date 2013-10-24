@@ -151,6 +151,7 @@ void preLink()
 			}/*for(i = node->LChilds.begin(); i != root->LChilds.end(); i++)*/
 	}/*while (size > 0)*/
 	free(queue);
+	queue = nullptr;
 	return;
 }
 
