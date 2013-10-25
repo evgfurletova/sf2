@@ -763,7 +763,7 @@ int GetPssm(int* error){
 		PSSM[i][0] = value;
 		for (j = 1; j < MainData::AlpSize; j++){
 			pch = strtok(NULL,delim);
-			if(Figure(pch) == 1){
+            if(!pch || Figure(pch) == 1){
 				error[0] = 30;
 				return -1;
 			}
@@ -1928,7 +1928,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 13){
-		cerr<<"Error13: Incorrect length of the words in the pattern"<<'\n';
+        cerr<<"Error13: The pattern contains words of different lengths"<<'\n';
 		return;
 	}
 	if(Error == 14){
