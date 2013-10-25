@@ -165,6 +165,7 @@ int Get_ND_HHM(ifstream *ff){
 	i = 0;
 	while((strlen(line) != 0)&&(i < H_M_Node::NumAllStates)){
 		j = 0;
+        double check_summ = 0.0;
 		while((strlen(line) != 0)&&(j <H_M_Node::NumAllStates)){
 			if(line[0] == '-'){
 				delete[] line;
@@ -177,6 +178,9 @@ int Get_ND_HHM(ifstream *ff){
 			{
 				if(Figure(pch) == 0){
 					MainData::ND_HHMProbs[i][j][k] = atof(pch);
+                    if (MainData::ND_HHMProbs[i][j][k] < 0)
+                        return 7;
+                    check_summ += MainData::ND_HHMProbs[i][j][k];
 					if(MainData::ND_HHMProbs[i][j][k] != 0){
 						MainData::ND_HHMTrans[i][k].push_back(j);
 					}
@@ -198,6 +202,9 @@ int Get_ND_HHM(ifstream *ff){
 			FNonEmptyLine(ff,line);
 			j++;
 		}
+        if (check_summ < 0.999999 || check_summ > 1.000001) {
+            return 44;
+        }
 		FNonEmptyLine(ff,line);
 		i++;
 	}
@@ -386,7 +393,7 @@ int GetAlp(void){
         }
 	}
 
-	if(MainData::order > 0){
+    else if(MainData::order > 0){
 		FNonEmptyLine(&ff,line);
 		MainData::MarkovType = atoi(line);
 		s = 1;
@@ -397,12 +404,17 @@ int GetAlp(void){
 			
             MModel_Prob::IniProbs = new double[s];
 			FNonEmptyLine(&ff,line);
-			i = 0;	
+			i = 0;	            
+            double summ_check = 0.0;
 			while((strlen(line) != 0)&&(i < s)){
 				pch = strtok(line,delim);
 				if(Figure(pch) == 0){
 				
                     MModel_Prob::IniProbs[i] = atof(pch);
+                    if (MModel_Prob::IniProbs[i] < 0) {
+                        return 7;
+                    }
+                    summ_check += MModel_Prob::IniProbs[i];
 				}
 				else{
 					delete[] line;
@@ -412,6 +424,9 @@ int GetAlp(void){
 				FNonEmptyLine(&ff,line);
 				i++;
 			}
+            if (summ_check < 0.999999 || summ_check > 1.00001) {
+                return 45;
+            }
 			if(i != s){
 				delete[] line;
 				line = nullptr;
@@ -431,10 +446,15 @@ int GetAlp(void){
 		while((strlen(line) != 0)&&(i < s)){
 			pch = strtok(line,delim);
 			j = 0;
+            double summ_check = 0.0;
 			while ((pch != NULL)&&(j < MainData::AlpSize))
 			{
 				if(Figure(pch) == 0){
 					MainData::MarkovProbs[j][i] = atof(pch);
+                    if (MainData::MarkovProbs[j][i] < 0) {
+                        return 7;
+                    }
+                    summ_check += MainData::MarkovProbs[j][i];
 					//norm += MainData::MarkovProbs[j][i];
 				}
 				else{
@@ -445,7 +465,9 @@ int GetAlp(void){
 				pch = strtok(NULL,delim);
 				j++;
 			}
-		
+            if (summ_check < 0.999999 || summ_check > 1.000001) {
+                return 7;
+            }
 			if(j != MainData::AlpSize){
 				delete[] line;
 				line = nullptr;
@@ -460,18 +482,21 @@ int GetAlp(void){
 			return 6;
 		}
 	}
-	if(MainData::order == -2){
+    else if(MainData::order == -2){
 		int Error = Get_ND_HHM(&ff);
 		if(Error > 0){
 			return Error;
 		}
 	}
-	if(MainData::order == -1){
+    else if(MainData::order == -1){
 		int Error = Get_D_HHM(&ff);
 		if(Error > 0){
 			return Error;
 		}
 	}
+    else {
+        return 26;
+    }
 
 	ff.close();
 	delete[] line;
@@ -1904,7 +1929,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 7){
-		cerr<<"Error7: Incorrect alphabet distribution"<< '\n';
+        cerr<<"Error7: Incorrect probability distribution"<< '\n';
 		return;
 	}
 	if(Error == 8){
@@ -2041,6 +2066,14 @@ void MainData::ErrorDetect(int Error){
 	if(Error == 43){
 		cerr<<"Error42: Error in the pattern description. Lengthes of footprints must be at least length of words in the pattern"<<'\n';
 	}
+    if(Error == 44){
+        cerr<<"Error44: Sum of the probabilities in each matrix must be equal to 1"<<'\n';
+        return;
+    }
+    if(Error == 45){
+        cerr<<"Error45: Sum of the probabilities in each matrix row must be equal to 1"<<'\n';
+        return;
+    }
 	return;
 }
 
