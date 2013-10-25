@@ -542,7 +542,7 @@ int ind;
 int Error = 0;
 char *line = new char[WordLenMax];  
 char *pch;
-int* DigitLine;
+int* DigitLine = nullptr;
 char delim[] =", ; \t";
 ifstream ff(MainData::PatternFileName.c_str());
 
@@ -610,7 +610,9 @@ ifstream ff(MainData::PatternFileName.c_str());
 
 	ff.close();
 	delete[] line;
-	delete[] DigitLine;
+    if (DigitLine) {
+        delete[] DigitLine;
+    }
 	DigitLine = nullptr;
 	line = nullptr;
 	return 0;
@@ -1966,7 +1968,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 23){
-		cerr<<"Error23: Incorrect number of words in the pattern"<<'\n';
+        cerr<<"Error23: Pattern is empty"<<'\n';
 		return;
 	}
 	if(Error == 24){
