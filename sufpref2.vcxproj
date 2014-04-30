@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{EECC8137-A9BC-44D7-9A9C-2714A5F666C1}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>sufpref2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\SufPref2\sf2\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sufpref2.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sufpref2</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\SufPref2\sf2\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sufpref2.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sufpref2</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\SufPref2\sf2\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">sufpref2.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">sufpref2</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\SufPref2\sf2\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">sufpref2.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">sufpref2</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> -std=c++0x %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_DEBUG;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/SufPref2/sf2/Debug/sufpref2.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/SufPref2/sf2/Debug/sufpref2.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/SufPref2/sf2/Debug/sufpref2.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> -std=c++0x %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>Release</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/SufPref2/sf2/Release/sufpref2.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/SufPref2/sf2/Release/sufpref2.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/SufPref2/sf2/Release/sufpref2.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalOptions> -std=c++0x %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>MinSizeRel</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/SufPref2/sf2/MinSizeRel/sufpref2.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>C:/SufPref2/sf2/MinSizeRel/sufpref2.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/SufPref2/sf2/MinSizeRel/sufpref2.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalOptions> -std=c++0x %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>RelWithDebInfo</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>C:/SufPref2/sf2/RelWithDebInfo/sufpref2.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Python27/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>C:/SufPref2/sf2/RelWithDebInfo/sufpref2.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/SufPref2/sf2/RelWithDebInfo/sufpref2.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/SufPref2/sf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"c:\Program Files\CMake 2.8\bin\cmake.exe" -HC:/SufPref2/sf2 -BC:/SufPref2/sf2 --check-stamp-file C:\SufPref2\sf2\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/SufPref2/sf2/CMakeLists.txt;C:\SufPref2\sf2\CMakeLists.txt;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeVS10FindMake.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystem.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompilerABI.c;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompilerABI.cpp;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPythonLibs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindFrameworks.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\SelectLibraryConfigurations.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\SufPref2\sf2\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\SufPref2\sf2\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/SufPref2/sf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"c:\Program Files\CMake 2.8\bin\cmake.exe" -HC:/SufPref2/sf2 -BC:/SufPref2/sf2 --check-stamp-file C:\SufPref2\sf2\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/SufPref2/sf2/CMakeLists.txt;C:\SufPref2\sf2\CMakeLists.txt;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeVS10FindMake.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystem.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompilerABI.c;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompilerABI.cpp;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPythonLibs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindFrameworks.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\SelectLibraryConfigurations.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\SufPref2\sf2\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\SufPref2\sf2\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/SufPref2/sf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"c:\Program Files\CMake 2.8\bin\cmake.exe" -HC:/SufPref2/sf2 -BC:/SufPref2/sf2 --check-stamp-file C:\SufPref2\sf2\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/SufPref2/sf2/CMakeLists.txt;C:\SufPref2\sf2\CMakeLists.txt;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeVS10FindMake.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystem.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompilerABI.c;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompilerABI.cpp;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPythonLibs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindFrameworks.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\SelectLibraryConfigurations.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\SufPref2\sf2\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\SufPref2\sf2\CMakeFiles\generate.stamp</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/SufPref2/sf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"c:\Program Files\CMake 2.8\bin\cmake.exe" -HC:/SufPref2/sf2 -BC:/SufPref2/sf2 --check-stamp-file C:\SufPref2\sf2\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/SufPref2/sf2/CMakeLists.txt;C:\SufPref2\sf2\CMakeLists.txt;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeVS10FindMake.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystem.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerId.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CompilerId\VS-10.vcxproj.in;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeClDeps.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindBinUtils.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestRCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompilerABI.c;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeTestCompilerCommon.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeDetermineCompilerABI.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseImplicitLinkInfo.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompilerABI.cpp;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompiler.cmake.in;C:\SufPref2\sf2\CMakeFiles\2.8.11.2\CMakeCXXCompiler.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPythonLibs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeFindFrameworks.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\SelectLibraryConfigurations.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\SufPref2\sf2\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\SufPref2\sf2\CMakeFiles\generate.stamp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ac_trie.cpp"  />
+    <ClCompile Include="bprob_graf.cpp"  />
+    <ClCompile Include="d_hhm_prob.cpp"  />
+    <ClCompile Include="hmm_ovgraf.cpp"  />
+    <ClCompile Include="hmm_preprocessing.cpp"  />
+    <ClCompile Include="h_m_ovgraf.cpp"  />
+    <ClCompile Include="maindata.cpp"  />
+    <ClCompile Include="mmodel_prob.cpp"  />
+    <ClCompile Include="m_ovgraf.cpp"  />
+    <ClCompile Include="nd_hhm_prob.cpp"  />
+    <ClCompile Include="nodeinit.cpp"  />
+    <ClCompile Include="ov_graf.cpp"  />
+    <ClCompile Include="sufpref2.cpp"  />
+    <ClCompile Include="sf_main.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/SufPref2/sf2/ZERO_CHECK.vcxproj">
+      <Project>9EEFEB07-10C2-4EED-9877-BEE175A57D0C</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
+set(CMAKE_VERBOSE_MAKEFILE on)
 
 
 find_package(PythonLibs 2.6)
@@ -8,7 +9,7 @@ include_directories(${PYTHON_INCLUDE_PATH})
 
 add_definitions(-Dnullptr=0)
 
-set(CMAKE_CXX_FLAGS "-std=c++0x")
+set(CMAKE_CXX_FLAGS "-std=c++0x -O0")
 set(HEADERS
 d_hhm_prob.h
 hmm_ovgraf.h

@@ -343,7 +343,9 @@ void m_ovgraf::WordProbs(string &word){
 				
 				prob = MModel_Prob::TermCondProb(prefcd, wordrest, restlen, sufcd); //computing of Prob(t,h[K+1,|h|],suf_K(h))
 
-				if(Probs[rppos] == 0) numprobs ++;
+				/////OSHIBKA?//////
+				if((Probs[rppos] == 0)&&(prob != 0)) numprobs ++;
+			//	if(Probs[rppos] != 0) numprobs ++;
 
 				Probs[rppos] += prob;
 				j++;

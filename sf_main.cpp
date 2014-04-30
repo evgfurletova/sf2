@@ -470,7 +470,7 @@ extern "C" int func_analis_pattern_data_1(int NWords, int WordLen, double* RandP
 	return 0;
 }
 
-extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char **FootPrints, double** PssmMas, double Thr)
+extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char **FootPrints, double** PssmMas, double Thr, int StrandType)
 {
 	std::string Error_line = "Error in the function 'analis_pattern_data_2_3' \n";
 	if(MainData::Error != 0){
@@ -484,6 +484,8 @@ extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char *
 		MainData::ErrorDetect(33);
 		return 33;
 	}
+
+	MainData::StrandType = StrandType; 
 
 	int i;
     NodeAC::ACRoot = new InternAC();
@@ -516,14 +518,41 @@ extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char *
 	stword.resize(WordLen);
 
 	double* SMas = new double[MainData::WordLen];
-	MainData::SetScorMas(SMas);
+	MainData::SetScorMas(SMas,MainData::PssmMas);
 
-	MainData::GenPssmWords1(NodeAC::ACRoot, word, stword, 0, 0,SMas);
+	double* SMasR = nullptr;
+	
+	if(MainData::StrandType == 1){
+			int k;
+			MainData::RPssmMas = new double*[MainData::WordLen];
+			for(k = 0; k < MainData::WordLen; k++){
+				MainData::RPssmMas[k] = new double[MainData::AlpSize];
+			}
+			MainData::ReverseMatrix();
+
+			SMasR = new double[WordLen + 1];
+			MainData::SetScorMas(SMasR,MainData::RPssmMas);
+			SMasR[WordLen] = 0;
+
+		}
+
+
+	if(MainData::StrandType == 0){
+			MainData::GenPssmWords1(NodeAC::ACRoot, word, stword, 0, 0,SMas);
+	}else{
+			MainData::GenPssmWordsR(NodeAC::ACRoot, word, stword, 0, 0, 0, SMas, SMasR);
+	}
+
 
 	delete[] word;
 	delete[] SMas;
 	SMas = NULL;
 	word = nullptr;
+
+	if(MainData::StrandType == 1){
+		delete[] SMasR;
+		SMasR = nullptr;
+	}
 	/*
 	cout<<"PSSM \n";
 	for(i = 0; i < MainData::WordLen; i++){

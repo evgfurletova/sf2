@@ -1,4 +1,4 @@
-﻿#include "nodeac.h"
+#include "nodeac.h"
 #include "nodeov.h"
 #include "nodebern.h"
 //#include "H_M_Data.h"

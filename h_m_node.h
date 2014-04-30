@@ -1,4 +1,4 @@
-﻿
+
 #ifndef H_M_DATA_H
 #define H_M_DATA_H
 

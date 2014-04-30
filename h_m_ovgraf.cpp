@@ -1,4 +1,4 @@
-﻿
+
 #include "nd_hhm_prob.h"
 #include "d_hhm_prob.h"
 #include "maindata.h"
@@ -354,7 +354,7 @@ void H_M_Node::ProbCalc(void){
 	if(MainData::TLen > MainData::WordLen){
 		int n = 0;
 
-
+		//DebPrint1(root, root);
    //////////////////MAIN LOOP///////////////////////////////
 		for(i = MainData::WordLen+1; i<= MainData::TLen; i++){ //i = m+1,..,n0
 			if(n >= MainData::WordLen - 1){

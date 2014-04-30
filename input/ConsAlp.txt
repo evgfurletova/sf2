@@ -1,0 +1,9 @@
+!The symbol '!' denotes start of comments
+
+!The Alphabet for consensus, mode = 5
+! Identical letters (X={X}) are generated automatically
+N = {A,C,G,T}
+S = {A,C}
+L = {G, T}
+P = {A,G,T}
+

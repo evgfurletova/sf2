@@ -25,7 +25,7 @@ void hmm_ovgraf::CrConsistStatesMatrix(void){
 
 //Design set of states for all nodes of ovgraph, compute back probabilities 
 //Input parameters: node - node w, LPnode - lpred(w), back - Back(w)
-void hmm_ovgraf::States_and_BackProbs(H_M_Node* node, H_M_Node* LPnode, string &back){
+void hmm_ovgraf::States_and_BackProbs(H_M_Node* node, H_M_Node* LPnode, string &back, double* PredProbs, int* PredStates, double* NewProbs, int* NewStates, double** BackP){
 	int i,j;
 	if(node->num == 0){ //if w == root
 		node->States = Malloc<H_M_State*>(H_M_Node::NumAllStates); //AllStates(root) == Q
@@ -48,34 +48,99 @@ void hmm_ovgraf::States_and_BackProbs(H_M_Node* node, H_M_Node* LPnode, string &
 		SubStr(WNodeBacks,pos1,backlen,back);  //take Back(w)
 
 
-		for(i = 0; i < H_M_Node::NumAllStates; i++){  //for all q in Q
-			H_M_State NewStateData; 
-			vector<PriorList> backprobs;
-			backprobs.reserve(H_M_Node::NumAllStates);
-			int flag = 0;
-
+		if(MainData::order == -2){
 			for(j = 0; j < LPnode->NStates; j++){  //for all q' in AllState(lpred(w))
 				int lpstate = LPnode->States[j]->ID;	
-				
-				double prob = TermCondProb(lpstate,back,backlen, i); //Compute Prob(q',Back(w),q)
-				if(prob > 0){										//if Prob(q',Back(w),q) > 0 then q in AllState(w), q' in PriorList(w,q)
-					PriorList List;									
-					List.pos = j;
-					List.prob = prob;
-					flag = 1;
-					backprobs.push_back(List);
+				memset(PredProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+				memset(NewProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+				memset(PredStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+				memset(NewStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+				ND_HHM_Prob::AllTermProbs(lpstate, PredProbs, PredStates, 0, NewProbs, NewStates, back, backlen, 0);
+			
+				for(i = 0; i < H_M_Node::NumAllStates; i++){
+					BackP[j][i] = NewProbs[i];
 				}
 			}
 
-    		if(flag == 1){	//create descriptor of <w,q>
-				NewStateData.ID = i;
-				NewStateData.NumBackProbs = backprobs.size(); //|PriorList(w,q)|
-				NewStateData.BackProbs = Malloc<PriorList>(NewStateData.NumBackProbs);
-				int k;
-				for(k = 0; k <  NewStateData.NumBackProbs; k++) //for all q' in PriorList(w,q)
-					NewStateData.BackProbs[k] = backprobs[k]; //<w,q>.BackProbs[k] = q'; <w,q>.BackProbs[k] = Prob(q',Back(w),q); 
 
-				States.push_back(NewStateData);
+			for(i = 0; i < H_M_Node::NumAllStates; i++){  //for all q in Q
+
+				int ns = 0;
+				memset(NewProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+				for(j = 0; j < LPnode->NStates; j++){  //for all q' in AllState(lpred(w))
+					int lpstate = LPnode->States[j]->ID;	
+					if(BackP[j][i] > 0){
+						ns++;
+					}
+				}
+	
+				if(ns > 0){
+					H_M_State NewStateData; 
+					NewStateData.ID = i;
+					NewStateData.NumBackProbs = ns; //|PriorList(w,q)|
+					NewStateData.BackProbs = Malloc<PriorList>(NewStateData.NumBackProbs);
+			
+					int k = 0;
+					for(j = 0; j < LPnode->NStates; j++){  //for all q' in AllState(lpred(w))
+						int lpstate = LPnode->States[j]->ID;	
+						if(BackP[j][i] > 0){
+							NewStateData.BackProbs[k].prob = BackP[j][i];
+							NewStateData.BackProbs[k].pos = j; 
+							k++;
+						}
+					}
+					States.push_back(NewStateData);
+				}
+			}
+		}
+
+
+		if(MainData::order == -1){
+			int state, pos, pos1;
+			double prob;
+			//int* PredStates, double* NewProbs, int* NewStates,
+			memset(NewProbs, 0x00, LPnode->NStates * sizeof(double));
+			memset(PredStates, 0x00, LPnode->NStates * sizeof(int));
+			memset(NewStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+			for(j = 0; j < LPnode->NStates; j++){  //for all q' in AllState(lpred(w))
+				int lpstate = LPnode->States[j]->ID;	
+				int* q = new int;
+				prob = D_HHM_Prob::TermCondProb1(lpstate,back,backlen, q); //Compute Prob(q',Back(w),q)
+				if(prob > 0){
+					state = *q;				
+					PredStates[j] = state;
+					NewProbs[j] = prob;
+					NewStates[state] +=1;
+				}
+				else{
+					PredStates[j] = -1;
+				}
+			}
+
+			int ns = 0;
+			for(i = 0; i < H_M_Node::NumAllStates; i++){  //for all q in Q
+				
+    			if(NewStates[i] > 0){	//create descriptor of <w,q>
+					H_M_State NewStateData; 
+					NewStateData.ID = i;
+					NewStateData.NumBackProbs = 0; //|PriorList(w,q)|
+					NewStateData.BackProbs = Malloc<PriorList>(NewStates[i]);
+					States.push_back(NewStateData);
+					NewStates[i] = ns;
+					ns++;
+				}
+			}
+			
+			for(j = 0; j < LPnode->NStates; j++){  //for all q' in AllState(lpred(w))
+				state = PredStates[j];
+				if(state != -1){
+					prob = NewProbs[j];
+					pos = NewStates[state];
+					pos1 = States[pos].NumBackProbs; //hdsufiodoiuogvifjdgvovfiobv
+					States[pos].BackProbs[pos1].pos = j;
+					States[pos].BackProbs[pos1].prob  = prob;
+					States[pos].NumBackProbs ++;
+				}
 			}
 		}
 
@@ -93,7 +158,7 @@ void hmm_ovgraf::States_and_BackProbs(H_M_Node* node, H_M_Node* LPnode, string &
 	} /*if(node->num != 0)*/
 	  for( i = 0; i < node->NLChilds; i++){
 		H_M_Node* LC = static_cast<H_M_Node*>(node->LChilds[i]);
-		States_and_BackProbs(LC,node,back);
+		States_and_BackProbs(LC,node,back,PredProbs,PredStates,NewProbs,NewStates,BackP);
 	}
 }
 
@@ -103,42 +168,105 @@ void hmm_ovgraf::States_and_BackProbs(H_M_Node* node, H_M_Node* LPnode, string &
 void hmm_ovgraf::WordProbs(string &word){
 	int i,j,k;
 	//Let r be right deep node, q in AllState(r), WordProbs[r][q] = Prob(H~(r),q)
-
+	int* q = new int;
 	double***  WordProbs=  new double**[NodeOv::NumOVNodes]();
+
 	for(i = 0; i < NodeOv::NumOVNodes; i++){
 		H_M_Node* node = static_cast<H_M_Node*>(Nodes[i]);
 		WordProbs[i] = new double*[node->NStates]();
 		 for(j = 0; j < node->NStates; j++){
 			 WordProbs[i][j] = new double[H_M_Node::NumAllStates]();
+			 for(k = 0; k < H_M_Node::NumAllStates; k++){
+				WordProbs[i][j][k] = 0;
+			 }
 		 }
 	}
 	
-
+	
+	
 	///////////// computation of word probs Prob(q',H~(r),q)/////////
+	double* PredProbs = nullptr;
+	int* PredStates = nullptr;
+	double* NewProbs = nullptr;
+	int* NewStates = nullptr;
+
+	NewProbs = Malloc<double>(H_M_Node::NumAllStates);
+	PredStates = Malloc<int>(H_M_Node::NumAllStates);
+	NewStates = Malloc<int>(H_M_Node::NumAllStates);
+
+	if(MainData::order == -2){
+		PredProbs = Malloc<double>(H_M_Node::NumAllStates);
+	}
+
 	for(i = 0; i < MainData::NWords; i++){ //for all h in HH
 		int pos1 = PosNLeafWords[i];
 		int wordlen = MainData::WordLen;
 	    SubStr(WLeafWords, pos1, wordlen, word); //take word h
 		H_M_Node* RP = static_cast<H_M_Node*>(Nodes[RLeafPreds[i]]); //rpred(h) r
 		
-
-		for(j = 0; j <  RP->NStates; j++){		//for all q in AllState(r)
-
-			int rpstate =  RP->States[j]->ID;
-			for(k = 0; k <H_M_Node::NumAllStates; k++){ //for all q' in Q
-				double prob = TermCondProb(k, word, wordlen, rpstate); //Prob(q',h,q)
-				if(prob > 0){
-					WordProbs[RP->num][j][k] += prob; 
+		if(MainData::order == -2){
+			for(k = 0; k <H_M_Node::NumAllStates; k++){
+				memset(PredProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+				memset(NewProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+				memset(PredStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+				memset(NewStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+				ND_HHM_Prob::AllTermProbs(k, PredProbs, PredStates, 0, NewProbs, NewStates, word, wordlen, 0);
+			
+				for(j = 0; j <  RP->NStates; j++){		//for all q in AllState(r)
+					int rpstate =  RP->States[j]->ID;
+					double prob  = NewProbs[rpstate]; //Prob(q',h,q)
+					if(prob > 0){
+						WordProbs[RP->num][j][k] += prob; 
+					}			
 				}
-			
 			}
-			
 		}
+		else{
 
+			int state, pos;
+			double prob;
+
+			memset(NewProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+			memset(PredStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+			memset(NewStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+			
+			for(k = 0; k <H_M_Node::NumAllStates; k++){ //for all q' in Q
+				prob = D_HHM_Prob::TermCondProb1(k, word, wordlen, q); //Prob(q',h,q)
+				if(prob > 0){
+					state = *q;
+					PredStates[k] = state;
+					NewProbs[k] = prob;
+					//NewStates[k] = 1;
+					NewStates[state] = 1;
+				}
+				else{
+					PredStates[k] = -1;
+				}
+			}			
+			for(j = 0; j <  RP->NStates; j++){	
+				int rpstate =  RP->States[j]->ID;
+				if(NewStates[rpstate] > 0){
+					NewStates[rpstate] = j; 
+				}
+			}
+
+		
+			for(k = 0; k <H_M_Node::NumAllStates; k++){ //for all q' in Q
+				state = PredStates[k];
+				if(state > -1){
+					pos = NewStates[state];
+					prob = NewProbs[k];
+					WordProbs[RP->num][pos][k] += prob;
+				}
+			}
+		}
+		
 	}
 
 
 	//Updating of data structures
+	
+	
 	for(i = 0; i < NodeOv::NumOVNodes; i++){ //for all r in OV(HH)
 		H_M_Node* node = static_cast<H_M_Node*>(Nodes[i]);
 		if(node->rdeep == 1){  //if r is right deep
@@ -166,6 +294,7 @@ void hmm_ovgraf::WordProbs(string &word){
 		}
 	}
 
+
 	//delete WordProbs;
 
 	for(i = 0; i < NodeOv::NumOVNodes; i++){
@@ -179,11 +308,27 @@ void hmm_ovgraf::WordProbs(string &word){
 	}
 	delete[] WordProbs;
 	WordProbs = nullptr;
+
+
+	free(NewProbs);
+	free(PredStates); 
+	free(NewStates);
+	NewProbs = nullptr;
+	PredStates = nullptr;
+	NewStates = nullptr;
+	delete q;
+	q = nullptr;
+	
+	if(MainData::order == -2){
+		free(PredProbs);
+		PredProbs = nullptr;
+	}
+
 	return;
 }
 
 ////////////////////////////////////////////////////////////
-
+/*
 //Compute Prob(V^n-m)
 void hmm_ovgraf::TransMatrixProduct(int n){
 	int i, j;
@@ -216,7 +361,38 @@ void hmm_ovgraf::TransMatrixProduct(int n){
 	}
 	return;
 };
+*/
 
+
+//Compute Prob(V^n-m)
+void hmm_ovgraf::TransMatrixProduct(int n){
+	int i, j;
+	if(n == 0){ // if algorithm stage is m 
+		for(i = 0; i < H_M_Node::NumAllStates; i++){
+			for(j = 0; j < H_M_Node::ConsistStNums[i]; j++){
+				int state = H_M_Node::ConsistStMatrix[i][j];
+				double p = H_M_Node::TransProbMatrix[i][j];
+				H_M_Node::TransStepProbMatrix[state* H_M_Node::NumAllStates + i] = p;
+			}
+		}	
+	}
+	else{
+		double* temp = PrevTransStepProbMatrix;
+		PrevTransStepProbMatrix = H_M_Node::TransStepProbMatrix;
+		H_M_Node::TransStepProbMatrix = temp;
+		//memset(H_M_Node::TransStepProbMatrix, 0x00, H_M_Node::NumAllStates*H_M_Node::NumAllStates * sizeof(double));
+		memset(H_M_Node::TransStepProbMatrix, 0x00, H_M_Node::NumAllStates * sizeof(double));
+		 for( i =0; i < H_M_Node::NumAllStates; i++){
+			 for(j = 0; j < H_M_Node::ConsistStNums[i]; j++){
+				 int state = H_M_Node::ConsistStMatrix[i][j];
+				 double p = H_M_Node::TransProbMatrix[i][j];
+				 H_M_Node::TransStepProbMatrix[i]  += PrevTransStepProbMatrix[state]*p;
+			 }
+		 }
+	
+	}
+	return;
+};
 
 
 

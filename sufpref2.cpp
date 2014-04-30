@@ -22,6 +22,7 @@
 		//definition of text sets and sets of states see in our paper xxx;
 int main(int argc, char* argv[])
 {
+
 	////////////Preliminary actions//////////////
 	int i;
 	time_t time0 = time(NULL);
@@ -35,6 +36,8 @@ int main(int argc, char* argv[])
 		if(Error > 0)								//considering of case p0 == 1 and n0 == m, in the case PValue = Prob(HH) 
 			ExitFlag = 1;
 	}
+
+
 	if(ExitFlag == 0){
 		Error = MainData::Check_Out_of_Range();   //Check corectness of input parameters (see maindata.h (cpp))
 		if(Error > 0){
@@ -43,8 +46,8 @@ int main(int argc, char* argv[])
 	}
 
 	//open of out file
-	ofstream test;
-	test.open("Test.txt", ios::app);
+	//ofstream test;
+	//test.open("Test.txt", ios::app);
 	ofstream out;
 	if(MainData::Out_mode ==0){
 		out.open(MainData::OutName.c_str(), ios::app);
@@ -137,7 +140,12 @@ int main(int argc, char* argv[])
 		out<<std::setprecision(15)<<MainData::Pvalue<<'\n';
 	}
 	
-	
+	if(ExitFlag > 0){
+		if((MainData::Out_mode > 1)&&(ExitFlag == 2)){
+			 MainData::PrintMain(&out,2);
+		}
+	}
+
 		int j;
 	if((MainData::order == -2)&&(MainData::CrDistribFlag == 1)){
 		for(i = 0; i < H_M_Node::NumAllStates; i++){
@@ -169,11 +177,8 @@ int main(int argc, char* argv[])
 		MainData::D_HHMTrans = nullptr;
 	}
 	
-	if(ExitFlag > 0){
-		if((MainData::Out_mode > 1)&&(ExitFlag == 2)){
-			 MainData::PrintMain(&out,2);
-		}
-		return 1;
+	if(Error > 0){
+//		return 1;
 	}
 
 	if((MainData::mode == 2)||(MainData::mode == 3)){
@@ -194,7 +199,7 @@ int main(int argc, char* argv[])
 	
 	out.close();
 
-
+/*
 #if !defined(WIN32) && !defined(_WIN32)
 	// Print resources used
 	int who = RUSAGE_SELF;
@@ -202,25 +207,26 @@ int main(int argc, char* argv[])
 	int ret;
 	ret = getrusage(who, &usage);
 	if (ret==0) {
-	    std::cout << "Used resources: \n";
+	   // std::cout << "Used resources: \n";
 	    struct timeval utime = usage.ru_utime;
 	    struct timeval stime = usage.ru_stime;
 	    long maxrss = usage.ru_maxrss;
 	    long u_millsecs = (utime.tv_sec * 1000000 + utime.tv_usec) / 1000;
 	    long s_millsecs = (stime.tv_sec * 1000000 + stime.tv_usec) / 1000;
 	    long total_millsecs = u_millsecs + s_millsecs;
-	    std::cout << "user time: " << u_millsecs << "ms; system time: " << s_millsecs << "ms" << std::endl;
-	    std::cout << "total time: " << total_millsecs << "ms" << std::endl;
+	    //std::cout << "user time: " << u_millsecs << "ms; system time: " << s_millsecs << "ms" << std::endl;
+	    //std::cout << "total time: " << total_millsecs << "ms" << std::endl;
 	    long pagesize = sysconf(_SC_PAGE_SIZE);
 	    long memused = maxrss * pagesize;
-	    std::cout << "Used " << maxrss << " KB " << std::endl;
+	    //std::cout << "Used " << maxrss << " KB " << std::endl;
+	    std::cout << total_millsecs <<'\t'<< maxrss<<'\t'<<MainData::Pvalue<<'\n';
 	}
 	else {
 	    std::cout << "Can't use getrusage!\n";
 	}
 #endif
 
-
+	*/
 
 	return 0;
 

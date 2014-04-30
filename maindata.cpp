@@ -7,6 +7,8 @@ std::string MainData::PatternFileName;
 std::string MainData::PSSMFileName;
 std::string MainData::FootPrintFileName;
 std::string MainData::ConsAlpFileName;
+std::string MainData::SeqFileName;
+
 
 	// 2. Output files
 ofstream MainData::ResLOG;						
@@ -28,8 +30,12 @@ int	MainData::mode = 0;
 int MainData::NWords = 0;						
 int MainData::WordLen = 0;	
 int MainData::CrDistribFlag = 0;
-		//3.2.2. parameters for the pattern described by PSSM
-double** MainData::PssmMas;		
+int MainData::StrandType = 0;
+int MainData::DistribType = 0;				
+//3.2.2. parameters for the pattern described by PSSM
+
+double** MainData::PssmMas = NULL;		
+double** MainData::RPssmMas = NULL;	
 double MainData::Thr = 0;						
 		//3.2.3 parameters for the pattern described by a motif, number of replacements and number of constant positions
 int* MainData::motif;		
@@ -165,7 +171,6 @@ int Get_ND_HHM(ifstream *ff){
 	i = 0;
 	while((strlen(line) != 0)&&(i < H_M_Node::NumAllStates)){
 		j = 0;
-        double check_summ = 0.0;
 		while((strlen(line) != 0)&&(j <H_M_Node::NumAllStates)){
 			if(line[0] == '-'){
 				delete[] line;
@@ -178,9 +183,6 @@ int Get_ND_HHM(ifstream *ff){
 			{
 				if(Figure(pch) == 0){
 					MainData::ND_HHMProbs[i][j][k] = atof(pch);
-                    if (MainData::ND_HHMProbs[i][j][k] < 0)
-                        return 7;
-                    check_summ += MainData::ND_HHMProbs[i][j][k];
 					if(MainData::ND_HHMProbs[i][j][k] != 0){
 						MainData::ND_HHMTrans[i][k].push_back(j);
 					}
@@ -202,9 +204,6 @@ int Get_ND_HHM(ifstream *ff){
 			FNonEmptyLine(ff,line);
 			j++;
 		}
-        if (check_summ < 0.999999 || check_summ > 1.000001) {
-            return 44;
-        }
 		FNonEmptyLine(ff,line);
 		i++;
 	}
@@ -314,6 +313,241 @@ int Get_D_HHM(ifstream *ff){
 }
 
 //////////////////////////////////////
+int EstimateBernParams(char* seq){
+	int len = strlen(seq);
+	int i;
+
+	for(i = 0; i < len; i++){
+		int symb = MainData::AToi(seq[i]);
+		if(symb == -1){
+			return 47;
+		}
+		MainData::BernProb[symb] += 1;
+	}
+
+	for(i = 0; i < MainData::AlpSize; i++){
+		MainData::BernProb[i] = MainData::BernProb[i] / len;
+	}
+
+	return 0;
+}
+
+
+int EstimateMarkovOneParams(char* seq){
+	int len = strlen(seq);
+	int i;
+	int state,predsymb, symb;
+	int size = MainData::AlpSize* MainData::AlpSize;
+	double* Mas = new double[size];
+	for(i = 0; i < size; i++) Mas[i] = 0;
+
+	MainData::MarkovType = 0;
+	predsymb = MainData::AToi(seq[0]);
+	if(predsymb == -1){
+		return 47;
+	} 
+	
+
+	for(i = 1; i < len; i++){
+		state = 0;
+		symb = MainData::AToi(seq[i]);
+		if(symb == -1){
+			return 47;
+		}
+
+		state = predsymb* MainData::AlpSize + symb;
+		Mas[state] +=1;
+
+		predsymb = symb;
+	}
+
+	H_M_Node::NumAllStates = MModel_Prob::NumPower(MainData::AlpSize,MainData::order);
+	MainData::MarkovProbs = new double*[MainData::AlpSize];
+	for(i = 0; i < MainData::AlpSize; i++){
+		MainData::MarkovProbs[i] = new double[H_M_Node::NumAllStates];
+	}
+
+	MainData::CrDistribFlag = 1;
+
+	for(i = 0; i < size; i++){
+		int pos1 = i/MainData::AlpSize;
+		int pos2 = i % MainData::AlpSize;
+		MainData::MarkovProbs[pos2][pos1] = Mas[i];
+	}
+	
+	
+		
+	for(state = 0; state < H_M_Node::NumAllStates; state++){
+		double sum = 0;
+		for(i = 0; i < MainData::AlpSize; i++){
+			sum += MainData::MarkovProbs[i][state];
+		}
+		for(i = 0; i < MainData::AlpSize; i++){
+			MainData::MarkovProbs[i][state] = MainData::MarkovProbs[i][state]/sum;
+		}
+	}
+
+	delete[] Mas;
+	return 0;
+}
+
+
+
+
+
+
+int EstimateMarkovParams(char* seq){
+	int len = strlen(seq);
+	int i;
+	int state,predstate, symb;
+	H_M_Node::NumAllStates = MModel_Prob::NumPower(MainData::AlpSize,MainData::order);
+
+
+	int size = H_M_Node::NumAllStates* MainData::AlpSize;
+	double* Mas = new double[size];
+	for(i = 0; i < size; i++) Mas[i] = 0;
+
+	MainData::MarkovType = 0;
+	std::string stseq = seq;
+	predstate = MModel_Prob::PrefixN(MainData::order, stseq);
+
+	for(i = MainData::order; i < len; i++){
+		state = 0;
+		symb = MainData::AToi(seq[i]);
+		if(symb == -1){
+			return 47;
+		}
+
+		state = predstate* MainData::AlpSize + symb;
+		Mas[state] +=1;
+
+		predstate = state % H_M_Node::NumAllStates;
+	}
+
+	
+	MainData::MarkovProbs = new double*[MainData::AlpSize];
+	for(i = 0; i < MainData::AlpSize; i++){
+		MainData::MarkovProbs[i] = new double[H_M_Node::NumAllStates];
+	}
+
+	MainData::CrDistribFlag = 1;
+
+	for(i = 0; i < size; i++){
+		int pos1 = i/MainData::AlpSize;
+		int pos2 = i % MainData::AlpSize;
+		MainData::MarkovProbs[pos2][pos1] = Mas[i];
+	}
+	
+	///////////
+	for(i = 0; i < H_M_Node::NumAllStates; i++){
+		int j;
+		cout<<"State: "<<MModel_Prob::deCode(MainData::order,i)<<'\t';
+		for(j = 0; j < MainData::AlpSize; j++){
+			cout<<MainData::MarkovProbs[j][i]<<'\t';
+		}
+		cout<<'\n';
+	}
+	/////////	
+
+	for(state = 0; state < H_M_Node::NumAllStates; state++){
+		double sum = 0;
+		for(i = 0; i < MainData::AlpSize; i++){
+			sum += MainData::MarkovProbs[i][state];
+		}
+		for(i = 0; i < MainData::AlpSize; i++){
+			MainData::MarkovProbs[i][state] = MainData::MarkovProbs[i][state]/sum;
+		}
+	}
+
+	delete[] Mas;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+int EstimateHMMParams(const char* seq){
+
+	int i,q, q1;
+	int seqlen = strlen(seq);
+	int Nseqs = seqlen/MaxSeqLen + 1; 
+	char** Seqs = new char*[Nseqs];
+		
+	for(i = 0; i < Nseqs; i++){
+		
+		int len, l;
+		if(i < Nseqs - 1)
+			len = MaxSeqLen;
+		else 
+			len = seqlen % MaxSeqLen;
+		
+		Seqs[i] = new char[len + 1];
+		Seqs[i][len] = '\0';
+
+		int pos = i*MaxSeqLen;
+		for(l = 0; l < len; l++)
+			Seqs[i][l] = seq[pos+l];
+	}
+	
+	
+	double like = ND_HHM_Prob::Find_Best_Model(Nseqs, Seqs, MainData::ND_HHMProbs);
+
+
+	MainData::ND_HHMTrans = new vector<int>*[H_M_Node::NumAllStates];
+
+	for(q1 = 0; q1 < H_M_Node::NumAllStates; q1++){
+		MainData::ND_HHMTrans[q1] = new vector<int>[MainData::AlpSize];
+		for(i = 0; i < MainData::AlpSize; i++){
+			for(q = 0; q < H_M_Node::NumAllStates; q++){
+				if(MainData::ND_HHMProbs[q1][q][i] != 0){
+					MainData::ND_HHMTrans[q1][i].push_back(q);
+				}
+			}
+		}
+	}	
+
+	
+	return 0;
+}
+
+
+int MainData::EstimateDistribParams(void){
+	ifstream ff(MainData::SeqFileName.c_str());
+	char* seq = new char[FileLineMax];
+	FNonEmptyLine(&ff,seq);
+
+	int l = strlen(seq);
+	seq[l+1] = '\0';
+
+	if (strlen(seq) == 0) {
+        delete[] seq;
+        seq = nullptr;
+        return 46;
+    }
+
+	int er = 0;
+
+	if(MainData::order < 0){
+		er = EstimateHMMParams(seq);
+	}
+
+	if(MainData::order ==0){
+		er = EstimateBernParams(seq);
+	}
+
+	if(MainData::order > 0){
+		//er = EstimateMarkovOneParams(seq);
+		er = EstimateMarkovParams(seq);
+	}
+	delete[] seq;
+	return er; 
+};	
+/////////////////////////////////////
 //sets parameters from alphabet file
 
 int GetAlp(void){
@@ -327,7 +561,7 @@ int GetAlp(void){
 	char* pch;
 	char delim[] =", ; \t";
 	FNonEmptyLine(&ff,line);
-    if (strlen(line) == 0u) {
+    if (strlen(line) == 0) {
         delete[] line;
         line = nullptr;
         return 7;
@@ -352,6 +586,32 @@ int GetAlp(void){
 		i++;
 	}
 	MainData::AlpSize = i;
+
+
+	//////////Estimates model parameters///////////////////
+	if(MainData::DistribType == 1){
+		if(MainData::order < 0){
+			FNonEmptyLine(&ff,line);
+			if (strlen(line) == 0) {
+				delete[] line;
+				line = nullptr;
+				return 27;
+			}
+			pch = strtok(line,delim);
+			if(Figure(pch) == 0){
+				H_M_Node::NumAllStates = atoi(line);
+			}
+			else{
+				delete[] line;
+				line = nullptr;
+				return 27;
+			}
+		}
+		int er = MainData::EstimateDistribParams();
+		return er;
+	}
+
+
 
 	double norm = 0;
 	if(MainData::order == 0){
@@ -393,7 +653,7 @@ int GetAlp(void){
         }
 	}
 
-    else if(MainData::order > 0){
+	if(MainData::order > 0){
 		FNonEmptyLine(&ff,line);
 		MainData::MarkovType = atoi(line);
 		s = 1;
@@ -404,17 +664,12 @@ int GetAlp(void){
 			
             MModel_Prob::IniProbs = new double[s];
 			FNonEmptyLine(&ff,line);
-			i = 0;	            
-            double summ_check = 0.0;
+			i = 0;	
 			while((strlen(line) != 0)&&(i < s)){
 				pch = strtok(line,delim);
 				if(Figure(pch) == 0){
 				
                     MModel_Prob::IniProbs[i] = atof(pch);
-                    if (MModel_Prob::IniProbs[i] < 0) {
-                        return 7;
-                    }
-                    summ_check += MModel_Prob::IniProbs[i];
 				}
 				else{
 					delete[] line;
@@ -424,9 +679,6 @@ int GetAlp(void){
 				FNonEmptyLine(&ff,line);
 				i++;
 			}
-            if (summ_check < 0.999999 || summ_check > 1.00001) {
-                return 45;
-            }
 			if(i != s){
 				delete[] line;
 				line = nullptr;
@@ -446,15 +698,10 @@ int GetAlp(void){
 		while((strlen(line) != 0)&&(i < s)){
 			pch = strtok(line,delim);
 			j = 0;
-            double summ_check = 0.0;
 			while ((pch != NULL)&&(j < MainData::AlpSize))
 			{
 				if(Figure(pch) == 0){
 					MainData::MarkovProbs[j][i] = atof(pch);
-                    if (MainData::MarkovProbs[j][i] < 0) {
-                        return 7;
-                    }
-                    summ_check += MainData::MarkovProbs[j][i];
 					//norm += MainData::MarkovProbs[j][i];
 				}
 				else{
@@ -465,9 +712,7 @@ int GetAlp(void){
 				pch = strtok(NULL,delim);
 				j++;
 			}
-            if (summ_check < 0.999999 || summ_check > 1.000001) {
-                return 7;
-            }
+		
 			if(j != MainData::AlpSize){
 				delete[] line;
 				line = nullptr;
@@ -482,21 +727,18 @@ int GetAlp(void){
 			return 6;
 		}
 	}
-    else if(MainData::order == -2){
+	if(MainData::order == -2){
 		int Error = Get_ND_HHM(&ff);
 		if(Error > 0){
 			return Error;
 		}
 	}
-    else if(MainData::order == -1){
+	if(MainData::order == -1){
 		int Error = Get_D_HHM(&ff);
 		if(Error > 0){
 			return Error;
 		}
 	}
-    else {
-        return 26;
-    }
 
 	ff.close();
 	delete[] line;
@@ -515,6 +757,17 @@ int MainData::AToi(const char Let){
 			return i;
 		}
 	}
+
+	char Let1;
+	if(islower(Let)) Let1=toupper(Let);
+	else if (isupper(Let)) Let1=tolower(Let);
+	
+	for(i = 0; i < AlpSize; i++){
+		if(Let1 == AlpMas[i]){
+			return i;
+		}
+	}
+
 	return -1;
 }
 
@@ -567,7 +820,7 @@ int ind;
 int Error = 0;
 char *line = new char[WordLenMax];  
 char *pch;
-int* DigitLine = nullptr;
+int* DigitLine;
 char delim[] =", ; \t";
 ifstream ff(MainData::PatternFileName.c_str());
 
@@ -635,9 +888,7 @@ ifstream ff(MainData::PatternFileName.c_str());
 
 	ff.close();
 	delete[] line;
-    if (DigitLine) {
-        delete[] DigitLine;
-    }
+	delete[] DigitLine;
 	DigitLine = nullptr;
 	line = nullptr;
 	return 0;
@@ -788,7 +1039,7 @@ int GetPssm(int* error){
 		PSSM[i][0] = value;
 		for (j = 1; j < MainData::AlpSize; j++){
 			pch = strtok(NULL,delim);
-            if(!pch || Figure(pch) == 1){
+			if(Figure(pch) == 1){
 				error[0] = 30;
 				return -1;
 			}
@@ -820,15 +1071,15 @@ int GetPssm(int* error){
 
 
 
-void MainData::SetScorMas(double* SMas){
+void MainData::SetScorMas(double* Mas, double** Matrix){
 	int i, j;
 	for( i = 0; i<MainData::WordLen; i++){
 	
-		SMas[i] = -100;
+		Mas[i] = -100;
 		
 		for( j = 0; j < MainData::AlpSize; j++){
-			if(MainData::PssmMas[i][j] > SMas[i]){
-				SMas[i] = MainData::PssmMas[i][j];
+			if(Matrix[i][j] > Mas[i]){
+				Mas[i] = Matrix[i][j];
 			}
 		}
 	}
@@ -837,7 +1088,7 @@ void MainData::SetScorMas(double* SMas){
 
 	while(i > 0){
 		i--;
-		SMas[i] = SMas[i] + SMas[i+1]; 
+		Mas[i] = Mas[i] + Mas[i+1]; 
 	}
 
 	return;
@@ -922,6 +1173,72 @@ int MainData::GenPssmWords1(NodeAC* node, int *word, string& stword, int i, doub
 	return 0;
 }
 
+
+
+/////////DOUBLE STRAND////////////////
+void MainData::ReverseMatrix(void){
+	int i;
+	for(i = 0; i < MainData::WordLen; i++){
+		MainData::RPssmMas[i][0] = MainData::PssmMas[MainData::WordLen - i - 1][3];
+		MainData::RPssmMas[i][3] = MainData::PssmMas[MainData::WordLen - i - 1][0];
+		MainData::RPssmMas[i][1] = MainData::PssmMas[MainData::WordLen - i - 1][2];
+		MainData::RPssmMas[i][2] = MainData::PssmMas[MainData::WordLen - i - 1][1];
+	}
+}
+
+
+//It generates nodes having admisible score and adds them to the trie
+int MainData::GenPssmWordsR(NodeAC* node, int *word, string& stword, int i, double score, double scoreR, double* SMas, double* SMasR){
+	//Here: "node" is the current node; "i" is length of new node; "score" is score of new node
+	//SMas[i] - maximal score among all suffixes of length WordLen- i; "word" - word corresponding to the current node   
+	double score1 = score;
+	double scoreR1 = scoreR;
+	int j;
+	NodeAC* node1 = node;
+	for(j = 0; j < MainData::AlpSize; j++){
+		node = node1;
+		score = score1;
+		scoreR = scoreR1;
+
+		if(i == (MainData::WordLen - 1)){ //if new node is leaf (a word from motif)
+			word[i] = j;
+			score = score + MainData::PssmMas[i][j];
+			scoreR = scoreR + MainData::RPssmMas[i][j];
+			if((score >= MainData::Thr)||(scoreR >= MainData::Thr)){
+				MainData::NWords++;
+				if(MainData::TLen == MainData::WordLen){
+					int k;
+					for(k = 0; k < MainData::WordLen; k++){
+						stword[k] = MainData::IToa(word[k]);
+					}
+					MainData::Pvalue += CompWordProb(stword);
+				}
+				else{
+					NodeAC::InsertNode(node, word[i], MainData::NWords);
+				}
+			}
+		} 
+		else{ //if new node is overlap
+		
+			double ms = score + MainData::PssmMas[i][j]+SMas[i+1]; //maximal score of among all words from pattern having prefix word 
+			double msR = scoreR + MainData::RPssmMas[i][j]+SMasR[i+1]; //maximal Rscore of among all words from pattern having prefix word 
+	
+			if((ms >= MainData::Thr)||(msR >= MainData::Thr)){
+				word[i] = j;
+				score = score + MainData::PssmMas[i][j];
+				scoreR = scoreR + MainData::RPssmMas[i][j];
+				if(MainData::TLen > MainData::WordLen)
+					NodeAC::InsertNode(node, word[i], 0);
+				MainData::GenPssmWordsR(node, word, stword,i+1, score, scoreR, SMas, SMasR);
+			}
+		}
+	}
+	return 0;
+}
+
+
+
+/////////////////////////////////////
 
 //It calculates cut-off for a footprint
 
@@ -1297,9 +1614,26 @@ int MainData::GetInput(void){
 		
 		int *word = new int[WordLen +1];
 		word[WordLen] = -1;
+		
 		double* SMas = new double[WordLen + 1];
-		SetScorMas(SMas);
+		SetScorMas(SMas,MainData::PssmMas);
 		SMas[WordLen] = 0;
+		
+		double* SMasR = nullptr;
+		if(MainData::StrandType == 1){
+			int k;
+			MainData::RPssmMas = new double*[MainData::WordLen];
+			for(k = 0; k < MainData::WordLen; k++){
+				MainData::RPssmMas[k] = new double[MainData::AlpSize];
+			}
+			ReverseMatrix();
+
+			SMasR = new double[WordLen + 1];
+			SetScorMas(SMasR,MainData::RPssmMas);
+			SMasR[WordLen] = 0;
+
+		}
+		
 		string stword;
 		if(TLen == WordLen){
 			if(MainData::NOccur > 1){
@@ -1307,24 +1641,42 @@ int MainData::GetInput(void){
 				delete[] SMas;
 				word = nullptr;
 				SMas = nullptr;
+				if(MainData::StrandType == 1){
+					delete[] SMasR;
+					SMasR = nullptr;
+				}
 				return 100;
 			}
 			else stword.resize(WordLen);
 		}
-
-		GenPssmWords1(NodeAC::ACRoot, word, stword, 0, 0,SMas);
+		
+		
+		if(MainData::StrandType == 0){
+			GenPssmWords1(NodeAC::ACRoot, word, stword, 0, 0,SMas);
+		}
+		else{
+			GenPssmWordsR(NodeAC::ACRoot, word, stword, 0, 0, 0, SMas, SMasR);
+		}
 
 		if(TLen == WordLen){
 			delete[] word;
 			delete[] SMas;
 			word = nullptr;
 			SMas = nullptr;
+			if(MainData::StrandType == 1){
+				delete[] SMasR;
+				SMasR = nullptr;
+			}
 			return 100;
 		}
 		delete[] word;
 		delete[] SMas;
 		word = nullptr;
 		SMas = nullptr;
+		if(MainData::StrandType == 1){
+			delete[] SMasR;
+			SMasR = nullptr;
+		}
 	}
 		
 
@@ -1415,7 +1767,7 @@ int MainData::Check_Out_of_Range(void){
 //Parsing of the command line
 int ParseLine(int i, char **argv, int argc){
 
-	if(argv[i][1]=='a'){
+	if(argv[i][1] == 'a'){
 		if((NParam <= argc - 2) && (argv[i+1][0]!='-')){
 			NParam += 2;
 			if((NParam <= argc - 3)&&(argv[i+2][0] != '-')){
@@ -1429,7 +1781,7 @@ int ParseLine(int i, char **argv, int argc){
 		}
 	}
 
-	if(argv[i][1]=='m'){
+	if(argv[i][1] == 'm'){
 		if(NParam <= argc - 3){
 			if(atoi(argv[i+1])==0){
 				if(argv[i+2][0]!='-'){
@@ -1588,7 +1940,7 @@ int ParseLine(int i, char **argv, int argc){
 		}
 	}
 
-	if(argv[i][1]=='o'){
+	if(argv[i][1] == 'o'){
 		if(NParam <= argc - 3){
 			MainData::Out_mode = atoi(argv[i+1]) + 1;
 			NParam += 2;
@@ -1610,7 +1962,7 @@ int ParseLine(int i, char **argv, int argc){
 		}
 	}
 
-	if(argv[i][1]== 'p'){
+	if(argv[i][1] == 'p'){
 		if(NParam <= argc - 3){
 			if((argv[i+1][0]!='-')&&(argv[i+2][0]!='-')){
 				if((NParam <= argc - 4)&&(argv[i+3][0] != '-')){
@@ -1651,6 +2003,39 @@ int ParseLine(int i, char **argv, int argc){
 			return 22;
 		}
 	}	
+	if(argv[i][1] == 'c'){
+		if(NParam <= argc - 1){
+			if(argv[i+1][0]!='-'){
+				
+				NParam += 2;
+				MainData::StrandType = atoi(argv[i+1]);
+			}
+			else{
+				return 44;
+			} 
+		}
+		else{
+			return 44;
+		}
+	}
+
+	if((argv[i][1] == 's')&&(argv[i][2] == 'e')){
+		if(NParam <= argc - 1){
+			if(argv[i+1][0]!='-'){
+				
+				NParam += 2;
+				MainData::SeqFileName = argv[i+1];
+				MainData::DistribType = 1;
+			}
+			else{
+				return 46;
+			} 
+		}
+		else{
+			return 46;
+		}
+	}
+
 	return 0;
 }
 
@@ -1855,6 +2240,12 @@ void MainData::PrintMain(ostream *ff,int exitflag){
 	*(ff)<<"\n 1.3. Parameters for probabilities calculation: \n";
 	*(ff)<<"Size of the text: "<<MainData::TLen<<'\n';
 	*(ff)<<"Number of occurences: "<<MainData::NOccur<<"\n";
+	*(ff)<<"Complement motif is considered: ";
+	if(MainData::StrandType == 1){
+		*(ff)<<"YES \n";
+	}else{
+		*(ff)<<"NO \n";
+	}
 
 	*(ff)<<"\n 2. Results \n";
 	if(exitflag == 0){
@@ -1929,7 +2320,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 7){
-        cerr<<"Error7: Incorrect probability distribution"<< '\n';
+		cerr<<"Error7: Incorrect alphabet distribution"<< '\n';
 		return;
 	}
 	if(Error == 8){
@@ -1953,7 +2344,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 13){
-        cerr<<"Error13: The pattern contains words of different lengths"<<'\n';
+		cerr<<"Error13: Incorrect length of the words in the pattern"<<'\n';
 		return;
 	}
 	if(Error == 14){
@@ -1993,7 +2384,7 @@ void MainData::ErrorDetect(int Error){
 		return;
 	}
 	if(Error == 23){
-        cerr<<"Error23: Pattern is empty"<<'\n';
+		cerr<<"Error23: Incorrect number of words in the pattern"<<'\n';
 		return;
 	}
 	if(Error == 24){
@@ -2064,16 +2455,24 @@ void MainData::ErrorDetect(int Error){
 	}
 
 	if(Error == 43){
-		cerr<<"Error42: Error in the pattern description. Lengthes of footprints must be at least length of words in the pattern"<<'\n';
+		cerr<<"Error43: Error in the pattern description. Lengths of footprints must be at least length of words in the pattern"<<'\n';
 	}
-    if(Error == 44){
-        cerr<<"Error44: Sum of the probabilities in each matrix must be equal to 1"<<'\n';
-        return;
-    }
-    if(Error == 45){
-        cerr<<"Error45: Sum of the probabilities in each matrix row must be equal to 1"<<'\n';
-        return;
-    }
+	if(Error == 44){
+		cerr<<"Error44: Incorrect parameters associated with the DNA strands"<<'\n';
+		return;
+	}
+	if(Error == 45){
+		cerr<<"Error45: Error of opening of file with enclosed sequence"<<'\n';
+		return;
+	}
+	if(Error == 46){
+		cerr<<"Error46: Incorrect parameters associated with enclosed sequence"<<'\n';
+		return;
+	}
+	if(Error == 47){
+		cerr<<"Error47: Sequence contains symbol that is out of Alphabet"<<'\n';
+		return;
+	}
 	return;
 }
 

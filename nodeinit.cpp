@@ -150,7 +150,7 @@ HMM_State::HMM_State()
 
 void H_M_State::Clear(int NDLinks, int rflag)
 {	
-	 free(BackProbs);   
+	free(BackProbs);   
 
 	free(NumDeepProbs);	
 

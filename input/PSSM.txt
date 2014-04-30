@@ -1,0 +1,19 @@
+!The symbol '!' denotes start of comments
+
+!Matrix PSSM needed for the patterns described by PSSM, mode = 2 or mode = 3 
+
+!Name of the matrix
+abd-A.cm
+
+!Matrix PSSM
+!Rows of the matrix correspond to positions of symbols in pattern words
+!Columns correspond to symbols from the alphabet
+!   A          C          G          T
+-0.59306  -1.440361   0.332705   0.596520
+ 0.07598   0.473287  -1.072636  -0.026668
+ 0.85105   0.473287  -3.637586  -3.637586
+ 1.33914  -3.637586  -3.637586  -2.028148
+-3.63758  -3.637586  -3.637586   1.366360
+ 0.16907  -1.440361  -3.637586   0.937124
+ 1.25276  -2.028148  -3.637586  -1.072636
+ 0.65287  -1.440361  -0.804372   0.332705

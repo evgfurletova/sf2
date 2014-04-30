@@ -215,7 +215,6 @@ void ReverseOrder(NodeAC* node){
 		int k;
 
 		InternAC* node1 = static_cast<InternAC*>(node);
-		NodeAC* node2;
 		vector<NodeAC*> Childs;
 		Childs.resize(MainData::AlpSize);
 		for(i = node1->LChilds.begin(); i != node1->LChilds.end(); i++){

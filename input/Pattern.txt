@@ -1,0 +1,11 @@
+!The symbol '!' denotes start of comments
+
+!Pattern described by a list of words, mode 0
+ACATATA
+AGACACA
+ATACACA
+ATAGATA
+CATTATA
+CTTTCAC
+CTTTCCA
+TACCACA

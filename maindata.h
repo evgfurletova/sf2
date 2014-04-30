@@ -1,4 +1,4 @@
-﻿#ifndef MAINDATA_H
+#ifndef MAINDATA_H
 #define MAINDATA_H
 
 #include <string>
@@ -17,11 +17,12 @@
 //#include "nodeov.h"
 using namespace std;
 
-#define		FileLineMax		10000
+#define		FileLineMax		1000000
 #define		AlpMax			100
 #define		WordLenMax		2000
 #define		MaxOccur		1000
 #define		NMaxStates		2000
+#define		MaxSeqLen		300
 
 class NodeAC;
 
@@ -36,6 +37,7 @@ public:
 	static std::string ConsAlpFileName;
 	static std::string OutName;
 	static std::string OutWordsName;
+	static std::string SeqFileName;
 
 	// 2. Output files
 	static ofstream ResLOG;						// output files
@@ -57,8 +59,12 @@ public:
 	static int NWords;						// number of words in pattern
 	static int WordLen;						// length of the pattern
 	static int CrDistribFlag;
+	static int StrandType;					//1 - if complement motif is added, 0 -otherwise
+	static int DistribType;					//1 - if model parameters have to be estimated, 0 - if the parameters are given
 	//3.2.2. parameters for the pattern described by PSSM
+
 	static double**	PssmMas;				// Pssm matrix
+	static double** RPssmMas;
 	static double Thr;						// Threhold for Pssm
 	//3.2.3 parameters for the pattern described by a motif, number of replacements and number of constant positions
 	static int* motif;						//motif
@@ -116,11 +122,14 @@ public:
 	static	int		AToi(char Let);						//gives number of a symbol Let in AlpMas
 	static	char    IToa(int pos);						//gives symbol Let having number pos in AlpMas
 	static  int		in_Alp(char *str);					//checks is str a word in the alphabet
+	static  int     EstimateDistribParams(void);		//estimates parameters of probabilities model
 	static  int	    GenRanWords(void);					//generates random pattern
 	static  double  CountThr(char *word);				//calculates cut-of for the pattern described by PSSM
-	static	void    SetScorMas(double* SMas);
-	static   int    GenPssmWords1(NodeAC* node, int *word, string& stword, int i, double score, double* SMas); //generates pattern described by PSSM
-	static void     MotifVariations1(NodeAC* node, int num, int pos, int* word);			//generates pattern described by a word and number of mismatches
+	static	void    SetScorMas(double* SMas, double** Matrix);
+	static	void	ReverseMatrix(void);
+	static  int     GenPssmWords1(NodeAC* node, int *word, string& stword, int i, double score, double* SMas); //generates pattern described by PSSM
+	static  int     GenPssmWordsR(NodeAC* node, int *word, string& stword, int i, double score, double scoreR, double* SMas, double* SMasR);
+	static  void    MotifVariations1(NodeAC* node, int num, int pos, int* word);			//generates pattern described by a word and number of mismatches
 	static  int     Pos_In_Cons_Alp(char Let);									//gives position of a letter Let in consensus alphabet
 	static  int     ConsVariations1(NodeAC* node, int pos, int* word);			//generate pattern described by consensus
 	static  int		GetInput(void);												//sets input parameters

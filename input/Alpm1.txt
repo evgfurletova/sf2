@@ -1,0 +1,26 @@
+!The symbol '!' denotes start of comments
+
+! Markov model of order 1
+!order of the model
+1
+
+!Alphabet
+A C G T
+
+!MarkovType. It is 1, if initial probabilities are given; 0, otherwise
+1
+
+!Initial Probabilities
+0.25
+0.25
+0.25
+0.25
+
+!Probabilities distribution. 
+!Rows of the matrix correspond to model states
+!Columns correspond to symbols from the alphabet
+!A    C    G    T
+0.3  0.3  0.2  0.2
+0.3  0.3  0.2  0.2
+0.3  0.3  0.2  0.2
+0.3  0.3  0.2  0.2

@@ -1,0 +1,9 @@
+!The symbol '!' denotes start of comments
+
+!List of footprints
+! It is needed to calculate cut-off,
+!when the pattern described by PSSM and footprints, mode of pattern description = 3
+AAAACTCTGTGTGTGTG
+AAAACTGGGGTG
+ACTGTGTGTGTGGTGTGGTGGTG
+GGGGGCCCCTCTG

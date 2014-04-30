@@ -26,7 +26,7 @@ extern "C" int func_analis_pattern_data_1(int NWords, int WordLen, double* RandP
 
 //give pattern described by a PSSM and Cut-of (list of footprints)
 extern "C" int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char **FootPrints, 
-										double** PssmMas, double Thr);
+										double** PssmMas, double Thr, int StrandType);
 
 //give pattern described by a word and number of mismatches
 extern "C" int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstPositions, 
@@ -48,7 +48,7 @@ extern int func_analis_alp_hhm_data(int AlpSize, char* AlpMas,
 extern int func_analis_pattern_data_0(int NWords, char **WordsList);
 extern int func_analis_pattern_data_1(int NWords, int WordLen, double* RandPatProbs);
 extern int func_analis_pattern_data_2_3(int WordLen, int NFootPrints, char **FootPrints, 
-										double** PssmMas, double Thr);
+										double** PssmMas, double Thr, int StrandType);
 extern int func_analis_pattern_data_4(char* motif, int Nreplace, int NConstPositions, 
 									  int *ConstPositions);
 extern int func_analis_pattern_data_5(char *consensus, int NSymbols, char **ConsAlp);

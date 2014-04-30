@@ -156,9 +156,10 @@ void SubStr(string &str, int startpos, int nsymb, string &result){
 //s.t. exist h*(w,r) computes Prob(q',h*(w,r),q), q' in AllState(w), q in ReachState(q',Back(h*(w,r)))
 
 //Input parameters: node - current processing node w; back - Back(h*(w,r)
-void DeepProbs(H_M_Node* node, string &back){
+void DeepProbs(H_M_Node* node, string &back, double* PredProbs, int* PredStates, double* NewProbs, int* NewStates){
 	int i,j;
-
+	int* q = new int;
+	
 	//Deep probabilities
 	if(node->ldeep == 1){	//if w is left deep node
 		int k,l; 
@@ -183,17 +184,57 @@ void DeepProbs(H_M_Node* node, string &back){
 					 int backlen = MainData::WordLen - node->len;
 			         SubStr(WLeafWords, pos1, backlen, back);				//take Back(h)
 
-				     for(k = 0; k <  DL->NStates; k++){						// for each q in ReachState(q',Back(h*(w,r)))
-						 int dstate = DL->States[k]->ID;					//q
-						 if(MainData::order > 0){
-							 flag = MModel_Prob::Check_States_Consistence(state, back, backlen, dstate); //flag == 1, if Prob(q',Back(h),q) >0, 0 - otherwise
-						 }
-						 if(flag == 1){
-							deepprobs[k].pos = k;
-							double p = TermCondProb(state, back, backlen, dstate);						//compute Prob(q',Back(h*(w,r)),q)
-						    deepprobs[k].prob += p;
-						 }
+					 if(MainData::order == -2){
+						memset(PredProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+						memset(NewProbs, 0x00, H_M_Node::NumAllStates * sizeof(double));
+						memset(PredStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+						memset(NewStates, 0x00, H_M_Node::NumAllStates * sizeof(int));
+						ND_HHM_Prob::AllTermProbs(state, PredProbs, PredStates, 0, NewProbs, NewStates, back, backlen, 0);
 					}
+				
+
+					double prob;
+					int newstate;
+					if(MainData::order == -1){
+						prob = D_HHM_Prob::TermCondProb1(state, back, backlen, q); 
+						newstate = *q;
+					}
+					
+
+					 ////////////////
+
+					if(MainData::order == -1){
+						if(newstate != -1){
+							for(k = 0; k <  DL->NStates; k++){						// for each q in ReachState(q',Back(h*(w,r)))
+								int dstate = DL->States[k]->ID;					//q
+								if(newstate == dstate){
+									deepprobs[k].pos = k;
+									deepprobs[k].prob += prob;
+									break;
+								}
+							}
+						}
+					}
+					else{
+						for(k = 0; k <  DL->NStates; k++){						// for each q in ReachState(q',Back(h*(w,r)))
+							 int dstate = DL->States[k]->ID;					//q
+							 if(MainData::order > 0){
+								 flag = MModel_Prob::Check_States_Consistence(state, back, backlen, dstate); //flag == 1, if Prob(q',Back(h),q) >0, 0 - otherwise
+							 }
+							 if(flag == 1){
+								deepprobs[k].pos = k;
+								double p = 0;
+								if(MainData::order == -2){
+									p  = NewProbs[dstate];
+								}
+								else{
+									p = TermCondProb(state, back, backlen, dstate);						//compute Prob(q',Back(h*(w,r)),q)
+								}
+							    deepprobs[k].prob += p;
+							 }
+						}
+					}
+					 ////////////////
 				}
 
 
@@ -215,11 +256,11 @@ void DeepProbs(H_M_Node* node, string &back){
 			}
 		}/*for(j = 0; j < node->NDLinks; j++)*/
 	}
-
+	delete q;
 	///Recursion. Processing of left successors of w
    for( i = 0; i < node->NLChilds; i++){
 		H_M_Node* LC = static_cast<H_M_Node*>(node->LChilds[i]);
-		DeepProbs(LC, back);
+		DeepProbs(LC, back,PredProbs,PredStates,NewProbs,NewStates);
 	}
 }
 
@@ -350,8 +391,32 @@ void SetStatesData(void){
 		back.resize(MainData::WordLen);							//Back(w)
 		string word;											//word w	
 		word.resize(MainData::WordLen);
+
+		double* PredProbs = nullptr;
+		int* PredStates = nullptr;
+		double* NewProbs = nullptr;
+		int* NewStates = nullptr;
+		double** BackP = nullptr;
+
+		NewProbs = Malloc<double>(H_M_Node::NumAllStates);
+		PredStates = Malloc<int>(H_M_Node::NumAllStates);
+		NewStates = Malloc<int>(H_M_Node::NumAllStates);
+
+		if(MainData::order == -2){
+			PredProbs = Malloc<double>(H_M_Node::NumAllStates);
+			BackP = new double*[H_M_Node::NumAllStates];
+			int i, j;
+			for(i = 0; i < H_M_Node::NumAllStates; i++){
+				BackP[i] = new double[H_M_Node::NumAllStates];
+				for( j = 0; j < H_M_Node::NumAllStates; j++){
+					BackP[i][j] = 0;
+				}
+			}
+		}
+		
+
 		if(MainData::order < 0)
-			hmm_ovgraf::States_and_BackProbs(root,root,back);	//Create list AllState(w), compute back  probabilities 
+			hmm_ovgraf::States_and_BackProbs(root,root,back,PredProbs,PredStates,NewProbs,NewStates,BackP);	//Create list AllState(w), compute back  probabilities 
 		else 
 			m_ovgraf::States_and_BackProbs(root,root,back,word);
 		
@@ -362,10 +427,31 @@ void SetStatesData(void){
 		PosNNodeBacks = nullptr;
 		WNodeBacks.clear();
 		///////
+
+		DeepProbs(root,back,PredProbs,PredStates,NewProbs,NewStates);									//computation of deep probabilities
 		
-		DeepProbs(root,back);									//computation of deep probabilities
-		
+
 		///free//////
+
+		free(NewProbs);
+		free(PredStates); 
+		free(NewStates);
+	
+		NewProbs = nullptr;
+		PredStates = nullptr;
+		NewStates = nullptr;
+
+		if(MainData::order == -2){
+			free(PredProbs);
+			PredProbs = nullptr;
+			int i;
+			for(i = 0; i < H_M_Node::NumAllStates; i++){
+				delete[] BackP[i];
+				BackP[i] = nullptr;
+			}
+			delete[] BackP;
+			BackP = nullptr;
+		}
 		CLasses.clear();
 		delete[] NLinkToClass;
 		NLinkToClass = nullptr;
@@ -386,7 +472,6 @@ void SetStatesData(void){
 		PosNLeafWords = nullptr;
 		WLeafWords.clear();
 		/////////////////////////////
-
 
 		FindRPPos(root);										 //find position of a state of node w in list of descriptors of states of rpred(w) 
 		
@@ -455,7 +540,7 @@ void H_M_Node::Preprocessing(void){
 //Free data structures
 void Del_HMM_Mas(void){
 	int i;
-	int j;		
+	//int j;		
 	free(H_M_Node::BnpProbs);
 	free(PrevBnpProbs);
 	H_M_Node::BnpProbs = nullptr;

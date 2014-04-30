@@ -316,26 +316,27 @@ EXTERN PyObject* py_func_analis_pattern_data_1(PyObject *self, PyObject *args, P
                                          Thr: float) : int */
 EXTERN PyObject* py_func_analis_pattern_data_2_3(PyObject *self, PyObject *args, PyObject *keywds)
 {
-    static char *kwlist[] = {"WordLen", "FootPrints", "PssmMas", "Thr", NULL };
+    static char *kwlist[] = {"WordLen", "FootPrints", "PssmMas", "Thr", "strandType", NULL };
     int WordLen = 0;
     int NFootPrints = 0;
     char **FootPrints = 0;
     double **PssmMas = 0;
     double Thr = 0.0;
+    int strandType = 0;
     PyObject * l1 = 0;
     PyObject * l2 = 0;
     PyObject * l2l = 0;
     int l1_size = 0;
     int l2_size = 0;
     int l2l_size = 0;
-	    int i = 0;
+    int i = 0;
     int j = 0;
     PyObject * current = 0;
     char *val1 = 0;
     double val2 = 0.0;
 	int ret;
 	PyObject * result;
-    if (!PyArg_ParseTupleAndKeywords(args, keywds, "iOOd", kwlist, &WordLen, &l1, &l2, &Thr))
+    if (!PyArg_ParseTupleAndKeywords(args, keywds, "iOOdi", kwlist, &WordLen, &l1, &l2, &Thr, &strandType))
         return NULL;
     NFootPrints = l1_size = PyList_Size(l1);
     FootPrints = (char**)calloc(l1_size, sizeof(char*));
@@ -358,7 +359,7 @@ EXTERN PyObject* py_func_analis_pattern_data_2_3(PyObject *self, PyObject *args,
             PssmMas[i][j] = val2;
         }
     }
-    ret = func_analis_pattern_data_2_3(WordLen, NFootPrints, FootPrints, PssmMas, Thr);
+    ret = func_analis_pattern_data_2_3(WordLen, NFootPrints, FootPrints, PssmMas, Thr, strandType);
     for (i=0; i<l2_size; i++) {
         free(PssmMas[i]);
     }

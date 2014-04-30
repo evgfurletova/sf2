@@ -1,4 +1,4 @@
-﻿#include "d_hhm_prob.h"
+#include "d_hhm_prob.h"
 #include "h_m_node.h"
 #include "maindata.h"
 
@@ -40,6 +40,35 @@ double D_HHM_Prob::TermProb(std::string word, int q){
 	double p = TermCondProb(0,word,s,q);
 	return p;
 };
+
+
+//calculates Prob_q1(word|q2)
+double D_HHM_Prob::TermCondProb1(int q1, const std::string &word, size_t wordsize, int* q2){
+	if(word.length() == 0){
+		*q2 = q1;
+		return 1;
+	}
+
+	int q;
+	double p = 1;
+	size_t i;
+	q = q1;
+	size_t s = wordsize;
+	for(i = 0; i < s; i++){
+		int pos = MainData::AToi(word.at(i));
+		p = p*MainData::D_HHMProbs[q][pos];
+		q = MainData::D_HHMTrans[q][pos];
+		if(q == -1){
+			*q2 = -1;
+			return 0;
+		}
+	}
+	*q2 = q;
+	return p;
+};
+
+
+
 
 
 //calculates probability of transition from q1 to q2

@@ -1,4 +1,4 @@
-﻿#ifndef NODEOV_H
+#ifndef NODEOV_H
 #define NODEOV_H
 
 #include "maindata.h"
