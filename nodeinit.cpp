@@ -42,10 +42,10 @@ LeafAC::LeafAC()
 /////////////////NODES OF OVERLAP GRAPH////////////////////////////////
 
 NodeOv* NodeOv::Root;			
-    int NodeOv::NumOVNodes = 0;		    
-    int NodeOv::NumRDNodes = 0;			
-    int NodeOv::NumLDNodes = 0;		
-    int NodeOv::NClasses = 0;	
+int NodeOv::NumOVNodes = 0;		    
+int NodeOv::NumRDNodes = 0;			
+int NodeOv::NumLDNodes = 0;		
+int NodeOv::NClasses = 0;	
 
 NodeOv::NodeOv() {
 	num = 0;
@@ -65,7 +65,7 @@ NodeOv::NodeOv() {
 NodeOv::~NodeOv(){		
     free(LChilds);   
 	free(RChilds); 
-	free(DeepLinks); 	
+	free(DeepLinks); 
 };		
 
 NodeOv* NodeOv::NewNode(){

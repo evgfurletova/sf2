@@ -818,8 +818,57 @@ std::vector<std::string> split(const std::string &s, char delim) {
     return split(s, delim, elems);
 }
 
+
+void CrearMainData(void){
+
+	MainData::mode = 0;	
+	MainData::NWords = 0;						
+	MainData::WordLen = 0;	
+	MainData::CrDistribFlag = 0;
+	MainData::StrandType = 0;
+	MainData::DistribType = 0;				
+
+	MainData::PssmMas = NULL;		
+	MainData::RPssmMas = NULL;	
+	MainData::Thr = 0;						
+	
+	MainData::motif;		
+	MainData::motifstr;
+	MainData::Nreplace = 0;					
+	MainData::ConstPositions = NULL;
+	MainData::NumConstPositions = 0;
+
+	MainData::consensus;		
+    MainData::consensusstr;
+	MainData::ConsAlp;
+		
+	MainData::RandPatProbs = NULL;
+
+	MainData::TLen	   = 0;						
+	MainData::NOccur  = 0;					
+	
+
+	MainData::MAX	   = 0;
+
+	MainData::ProbRes  = 0;
+	MainData::Pvalue   = 0;
+
+	MainData::MarkovProbs = NULL;
+	MainData::MarkovType = 0;	
+	MainData::ND_HHMProbs = NULL; 
+	MainData::ND_HHMTrans = NULL;
+	MainData::D_HHMProbs = NULL;
+	MainData::D_HHMTrans = NULL;
+	MainData::Error = 0;
+	MainData::Out_mode = 0;
+
+
+}
+
+
 extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *NWords){
 	std::string Error_line = "Error in the function 'main' \n";
+	
 
 	int i;
 	int ExitFlag = 0;
@@ -900,8 +949,15 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 			H_M_Node::ProbCalc();  //P-value computation for other models (see h_m_node.h, h_m_ovgraf.cpp)	
 
 		MainData::PrintMain(&out,0);
+
+		NodeOv::NumLDNodes =0;
+		NodeOv::NumOVNodes = 0;
+		NodeOv::NumRDNodes = 0;
+		NodeOv::NClasses = 0;
+
         if (MainData::order != 0) {
             H_M_Node::ClearData();
+			H_M_Node::NumAllStates = 0;
         }
 	}
 	
@@ -920,7 +976,7 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 		delete[] MainData::MarkovProbs;
 		MainData::MarkovProbs = nullptr;
 	}
-	
+	NodeAC::NumACNodes = 0;
 		int j;
        if((MainData::order == -2)&&(MainData::CrDistribFlag == 1)){
 			for(i = 0; i < H_M_Node::NumAllStates; i++){
@@ -957,7 +1013,7 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 			int err = MainData::Error;
 
 			//create_report(report);		
-			return err;
+			//return err;
 	     }
   
 	
@@ -985,5 +1041,11 @@ extern "C" int func_main(double* pvalue, char** report, char* **ResWords, int *N
 		*ResWords = NULL;
 	}
 	create_report(report);
-	return 0;
+	CrearMainData();
+	if(MainData::Error > 0){
+		return MainData::Error;
+	}
+	else{
+		return 0;
+	}
 }

@@ -611,6 +611,7 @@ void NodeOv::DeleteGraf(NodeOv* node){
 	for( i = 0; i < node->NLChilds; i++){
 		NodeOv::DeleteGraf(node->LChilds[i]);
 	}
+	
 	delete node;
 	node = nullptr;
 	return;
